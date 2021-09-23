@@ -146,33 +146,38 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ($rcv->PO->Detailsparepart as $item)
-                                                <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
-                                                    <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}</th>
-                                                    <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
-                                                    <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
-                                                    <td class="merk_sparepart">
-                                                        {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    {{-- <td><input class="form-control form-control-sm qty"id="selisih-{{ $item->id_sparepart }}" type="text" value="{{ $item->pivot->qty_po_sementara }}" name="qty" disabled/></td> --}}
-                                                    <td class="text-center qty">{{ $item->pivot->qty_po_sementara }}</td>
-                                                    <td class="satuan">{{ $item->Kemasan->nama_kemasan }}</td>
-                                                    <td>@if ($item->pivot->harga_satuan == '')
-                                                        <div class="small text-muted d-none d-md-block">Tidak ada
-                                                            data
-                                                        </div>
-                                                        @else
-                                                        <div class="harga_beli">
-                                                            Rp.{{ number_format($item->pivot->harga_satuan,2,',','.') }}
-                                                        </div>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        <button id="{{ $item->kode_sparepart }}-button" class="btn btn-success btn-datatable" type="button" data-toggle="modal"
-                                                            data-target="#Modaltambah-{{ $item->id_sparepart }}">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                @if ($item->pivot->qty_po_sementara > '0')
+                                                    <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
+                                                        <th scope="row" class="small" class="sorting_1">
+                                                            {{ $loop->iteration}}</th>
+                                                        <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
+                                                        <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
+                                                        <td class="merk_sparepart">
+                                                            {{ $item->Merksparepart->merk_sparepart }}</td>
+                                                        {{-- <td><input class="form-control form-control-sm qty"id="selisih-{{ $item->id_sparepart }}" type="text" value="{{ $item->pivot->qty_po_sementara }}" name="qty" disabled/></td> --}}
+                                                        <td class="text-center qty">{{ $item->pivot->qty_po_sementara }}</td>
+                                                        <td class="satuan">{{ $item->Kemasan->nama_kemasan }}</td>
+                                                        <td>@if ($item->pivot->harga_satuan == '')
+                                                            <div class="small text-muted d-none d-md-block">Tidak ada
+                                                                data
+                                                            </div>
+                                                            @else
+                                                            <div class="harga_beli">
+                                                                Rp.{{ number_format($item->pivot->harga_satuan,2,',','.') }}
+                                                            </div>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <button id="{{ $item->kode_sparepart }}-button" class="btn btn-success btn-datatable" type="button" data-toggle="modal"
+                                                                data-target="#Modaltambah-{{ $item->id_sparepart }}">
+                                                                <i class="fas fa-plus"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                @else
+                                                
+                                                @endif
+                                               
                                                 @empty
 
                                                 @endforelse
@@ -192,11 +197,10 @@
     <div class="container">
         <div class="card">
             <div class="card card-header-actions">
-                <div class="card-header ">Detail Pembelian Sparepart
+                <div class="card-header ">Detail Penerimaan Sparepart
                 </div>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Detail Sparepart</h5>
                 <div class="alert alert-danger" id="alertsparepartkosong" role="alert" style="display:none"> <i
                         class="fas fa-times"></i>
                     Error! Anda belum menambahkan sparepart!
@@ -300,15 +304,14 @@
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
                     <h6>Detail Pesanan</h6>
-                    <div class="small mb-2">
-                        <span class="font-weight-500 text-primary">{{ $item->nama_sparepart }}</span>
-                    </div>
+                    
+                    
                     <div class="row">
                         <div class="col-md-7">
                             <div class="d-flex flex-column font-weight-bold">
-                                <label class="small text-muted line-height-normal">Jenis
-                                    {{ $item->Merksparepart->Jenissparepart->jenis_sparepart }}, Merk
-                                    {{ $item->Merksparepart->merk_sparepart }}
+                                <div class="small mb-2">
+                                    <span class="font-weight-500 text-primary">{{ $item->nama_sparepart }}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col">
@@ -328,7 +331,7 @@
                             <input class="form-control harga_diterima" name="harga_diterima" type="number"
                                 placeholder="Input Harga Beli diterima" value="{{ $item->pivot->harga_satuan }}">
                             </input>
-                            <div class="small text-primary">Detail Harga :
+                            <div class="small text-primary">Harga (IDR):
                                 <span id="detailhargaditerima"
                                     class="detailhargaditerima">Rp.{{ number_format($item->pivot->harga_satuan,2,',','.')}}</span>
                             </div>
@@ -339,31 +342,57 @@
                         <textarea class="form-control" name="keterangan" type="text" id="keterangan"
                             placeholder="Input Keterangan diterima">{{ $item->keterangan }}</textarea>
                     </div>
-                    <hr>
-                    <div class="small mb-2">
-                        <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <select class="form-control" name="id_gudang" id="id_gudang">
-                                <option value="" holder>Pilih Gudang</option>
-                                @foreach ($gudang as $gudangs)
-                                <option value="{{ $gudangs->id_gudang }}">
-                                    {{ $gudangs->nama_gudang }}
-                                </option>
-                                @endforeach
-                            </select>
+                   
+                    @if ($item->Detailsparepart == ''| $item->Detailsparepart == null )
+                        <hr>
+                        <div class="small mb-2">
+                            <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <select class="form-control" name="id_rak" id="id_rak">
-                                <option value="" holder>Pilih Rak</option>
-                            </select>
-                            <span class="small" style="font-size: 13px"
-                            style="color: rgb(117, 114, 114)">(Pilih Gudang terlebih dahulu)</span>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                <select class="form-control" name="id_gudang" id="id_gudang">
+                                    <option value="" holder>Pilih Gudang</option>
+                                    @foreach ($gudang as $gudangs)
+                                    <option value="{{ $gudangs->id_gudang }}">
+                                        {{ $gudangs->nama_gudang }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="stok_min">Stok Minimum</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                <input class="form-control" name="stok_min" type="number" id="stok_min"
+                                    placeholder="Input Stok Minimum" value="{{ old('stok_min') }}"></input>
+                            </div>
                         </div>
-                    </div>
+                        
+                    @else
+                        <hr>
+                        <div class="small mb-2">
+                            <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                <select class="form-control" name="id_gudang" id="id_gudang">
+                                    <option value="{{ $item->Detailsparepart->Gudang->id_gudang }}" holder>{{ $item->Detailsparepart->Gudang->nama_gudang }}</option>
+                                    @foreach ($gudang as $gudangs)
+                                    <option value="{{ $gudangs->id_gudang }}">
+                                        {{ $gudangs->nama_gudang }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="stok_min">Stok Minimum</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                <input class="form-control" name="stok_min" type="number" id="stok_min"
+                                    placeholder="Input Stok Minimum" value="{{ $item->Detailsparepart->stok_min }}"></input>
+                            </div>
+                        </div>
+                        <span class="small text-muted line-height-normal"><span class="small">Penempatan Sebelumnya : {{ $item->Detailsparepart->Gudang->nama_gudang }}</span></span>
+                       
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
@@ -438,9 +467,8 @@
             var harga_diterima = form.find('input[name="harga_diterima"]').val()
             var total_harga = qty_rcv * harga_diterima
             var id_gudang = form.find('select[name=id_gudang]').val()
-            var id_rak = form.find('select[name=id_rak]').val()
-            console.log(id_rak)
-
+            var stok_min = form.find('input[name=stok_min]').val()
+            
             if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '') {
                 continue
             } else {
@@ -454,7 +482,7 @@
                     harga_diterima: harga_diterima,
                     total_harga: total_harga,
                     id_gudang: id_gudang,
-                    id_rak: id_rak
+                    stok_min: stok_min
                 }
                 dataform2.push(obj)
             }
@@ -490,7 +518,6 @@
         }
     }
 
-
     function konfirmsparepart(event, id_sparepart) {
         var form = $('#form-' + id_sparepart)
         var qty_rcv = form.find('input[name="qty_rcv"]').val()
@@ -500,8 +527,10 @@
             currency: 'IDR'
         }).format(harga_diterima)
         var keterangan = form.find('textarea[name="keterangan"]').val()
+        var id_gudang = form.find('select[name=id_gudang]').val()
+        var stok_min = form.find('input[name=stok_min]').val()
 
-        if (qty_rcv == 0 | qty_rcv == '' | harga_diterima_fix == 0 | harga_diterima_fix == '') {
+        if (qty_rcv == 0 | qty_rcv == '' | harga_diterima_fix == 0 | harga_diterima_fix == '' | id_gudang == 'Pilih Gudang' | id_gudang == '' | stok_min == '') {
             alert('Data Inputan Ada yang belum terisi')
         } else {
             var data = $('#item-' + id_sparepart)
@@ -518,11 +547,9 @@
                 var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
                 var satuan = $(data.find('.satuan')[0]).text()
                 var qty = $(data.find('.qty')[0]).text()
-                // console.log(qty)
                 var harga_beli = $(data.find('.harga_beli')[0]).text()
                 var template = $($('#template_delete_button').html())
                 var table = $('#dataTablekonfirmasi').DataTable()
-                // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
                 var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
                 table.row(row).remove().draw();
         
@@ -583,30 +610,30 @@
                 }
             ]
         });
-
-        $('select[name="id_gudang"]').on('change', function () {
-            var id_gudang = $(this).val();
-            if (id_gudang) {
-                $.ajax({
-                    url: '/inventory/receiving/getrak/' + id_gudang,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data)
-                        $('select[name="id_rak"]').empty();
-                        $('select[name="id_rak"]').append('<option value="" holder>Pilih Rak</option>')
-                        $.each(data, function (key, value) {
-                            $('select[name="id_rak"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                    error: function (response) {
-                        console.log(response)
-                    }
-                });
-            } else {
-                $('select[name="id_rak"]').empty();
-            }
-        });
+       
+        // $('select[name="id_gudang"]').on('change', function () {
+        //     var id_gudang = $(this).val();
+        //     if (id_gudang) {
+        //         $.ajax({
+        //             url: '/inventory/receiving/getrak/' + id_gudang,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function (data) {
+        //                 console.log(data)
+        //                 $('select[name="id_rak"]').empty();
+        //                 $('select[name="id_rak"]').append('<option value="" holder>Pilih Rak</option>')
+        //                 $.each(data, function (key, value) {
+        //                     $('select[name="id_rak"]').append('<option value="' + key + '">' + value + '</option>');
+        //                 });
+        //             },
+        //             error: function (response) {
+        //                 console.log(response)
+        //             }
+        //         });
+        //     } else {
+        //         $('select[name="id_rak"]').empty();
+        //     }
+        // });
 
     });
 

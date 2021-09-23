@@ -68,13 +68,6 @@
             </div>
             <div class="col-lg-8">
                 <div class="card mb-4">
-                    <div class="card card-header-actions">
-                        <div class="card-header">List Merk Sparepart
-                            {{-- <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                                data-target="#Modaltambah">Tambah
-                                Merk</button> --}}
-                        </div>
-                    </div>
                     <div class="card-body">
                         <div class="datatable">
 

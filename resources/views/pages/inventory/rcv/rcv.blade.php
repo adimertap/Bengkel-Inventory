@@ -240,7 +240,7 @@
                             <label class="small mb-1 mr-1" for="tanggal_rcv">Tanggal Receive</label><span
                                 class="mr-4 mb-3" style="color: red">*</span>
                             <input class="form-control" id="tanggal_rcv" type="date" name="tanggal_rcv"
-                                placeholder="Input Tanggal Receive" value="{{ old('tanggal_rcv') }}"
+                                placeholder="Input Tanggal Receive" value="<?php echo date('Y-m-d'); ?>"
                                 class="form-control @error('tanggal_rcv') is-invalid @enderror" />
                             @error('tanggal_rcv')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror

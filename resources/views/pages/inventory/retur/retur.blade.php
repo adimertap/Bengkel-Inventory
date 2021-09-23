@@ -198,7 +198,7 @@
                     <div class="form-group">
                         <label class="small mb-1" for="tanggal_retur">Tanggal Retur</label>
                         <input class="form-control" id="tanggal_retur" type="date" name="tanggal_retur"
-                            placeholder="Input Tanggal Receive" value="{{ old('tanggal_retur') }}"
+                            placeholder="Input Tanggal Receive" value="<?php echo date('Y-m-d'); ?>"
                             class="form-control @error('tanggal_retur') is-invalid @enderror" />
                         @error('tanggal_retur')<div class="text-danger small mb-1">{{ $message }}
                         </div> @enderror

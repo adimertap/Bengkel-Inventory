@@ -42,8 +42,9 @@ class PurchaseorderController extends Controller
         $supplier = Supplier::all();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
+        $hariini = Carbon::now();
 
-        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal','kode_po','supplier','pokirim','pocount'));
+        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal','kode_po','supplier','pokirim','pocount','hariini'));
     }
 
     /**

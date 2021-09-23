@@ -19,7 +19,6 @@ class DetailSparepart extends Model
     protected $fillable = [
     	'id_sparepart',
         'id_gudang',
-        'id_rak',
         'qty_stok',
         'stok_min',
         'status_jumlah',
@@ -41,11 +40,6 @@ class DetailSparepart extends Model
     public function Gudang()
     {
         return $this->belongsTo(Gudang::class, 'id_gudang', 'id_gudang');
-    }
-
-    public function Rak()
-    {
-        return $this->belongsTo(Rak::class, 'id_rak', 'id_rak');
     }
 
     // public function Gallery()

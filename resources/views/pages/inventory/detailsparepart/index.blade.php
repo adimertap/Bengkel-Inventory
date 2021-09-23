@@ -119,9 +119,6 @@
                                                 style="width: 60px;">Gudang</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 50px;">Rak</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 50px;">Status Jumlah</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
@@ -140,7 +137,6 @@
                                             <td>{{ $item->qty_stok }}</td>
                                             <td>{{ $item->stok_min}}</td>
                                             <td>{{ $item->Gudang->nama_gudang}}</td>
-                                            <td>{{ $item->Rak->nama_rak}}</td>
                                             <td class="text-center">
                                                 @if($item->status_jumlah == 'Cukup')
                                                 <span class="badge badge-success">
@@ -176,33 +172,6 @@
         </div>
     </div>
 </main>
-
-
-{{-- @forelse ($sparepart as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">×</span></button>
-        </div>
-        <form action="{{ route('sparepart.destroy', $item->id_sparepart) }}" method="POST" class="d-inline">
-            @csrf
-            @method('delete')
-            <div class="modal-body">Apakah Anda Yakin Menghapus Data Sparepart {{ $item->nama_sparepart }}?</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-danger" type="submit">Ya! Hapus</button>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-@empty
-
-@endforelse --}}
 @if (count($errors) > 0)
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
     Modal</button>

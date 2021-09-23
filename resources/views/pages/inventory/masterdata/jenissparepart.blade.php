@@ -70,10 +70,6 @@
             </div>
             <div class="col-lg-8">
                 <div class="card mb-4">
-                    <div class="card card-header-actions">
-                        <div class="card-header">List Jenis Sparepart
-                        </div>
-                    </div>
                     <div class="card-body">
                         <div class="datatable">
                             {{-- SHOW ENTRIES --}}

@@ -93,9 +93,12 @@
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 50px;">Merk Sparepart</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 20px;">Qty</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 20px;">Qty Sisa</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
                                                 style="width: 20px;">Kemasan</th>
@@ -115,6 +118,7 @@
                                             </th>
                                             <td>{{ $detail->nama_sparepart }}</td>
                                             <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
+                                            <td>{{ $detail->pivot->qty }}</td>
                                             <td>{{ $detail->pivot->qty_po_sementara }}</td>
                                             <td>{{ $detail->Kemasan->nama_kemasan }}</td>
                                             <td>Rp.
@@ -125,14 +129,10 @@
                                             </td>
                                         </tr>
                                         @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">
-                                                Data Sparepart Kosong
-                                            </td>
-                                        </tr>
+                                       
                                         @endforelse
                                         <tr>
-                                        <td colspan="6" class="text-center font-weight-500">
+                                        <td colspan="7" class="text-center font-weight-500">
                                             Total Harga
                                         </td>
                                         <td >

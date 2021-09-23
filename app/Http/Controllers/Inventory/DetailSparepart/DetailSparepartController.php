@@ -20,7 +20,7 @@ class DetailSparepartController extends Controller
      */
     public function index()
     {
-        $detailsparepart = DetailSparepartDetailSparepart::with('Sparepart','Gudang','Rak')->get();
+        $detailsparepart = DetailSparepartDetailSparepart::with('Sparepart','Gudang')->get();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal_tahun = Carbon::now()->format('j F Y');
       

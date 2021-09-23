@@ -29,10 +29,6 @@
         </nav>
         <hr class="mt-0 mb-4">
         <div class="card mb-4">
-
-            <div class="card-header">List Satuan Konversi
-            </div>
-
             <div class="card-body">
                 <div class="datatable">
                     @if(session('messageberhasil'))
