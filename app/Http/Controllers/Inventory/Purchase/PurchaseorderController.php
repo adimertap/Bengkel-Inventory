@@ -42,9 +42,8 @@ class PurchaseorderController extends Controller
         $supplier = Supplier::all();
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
-        $hariini = Carbon::now();
 
-        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal','kode_po','supplier','pokirim','pocount','hariini'));
+        return view('pages.inventory.purchase.po.po', compact('po','today','tanggal','kode_po','supplier','pokirim','pocount'));
     }
 
     /**
@@ -113,14 +112,12 @@ class PurchaseorderController extends Controller
 
         $po = PO::with([
            'Pegawai','Detailsparepart','Supplier','Sparepart'
-        //    'Supplier.Sparepart.Merksparepart.Jenissparepart','Supplier.Sparepart.Kartugudang','Supplier.Sparepart.Kartugudangterakhir'
         ])->find($id);
 
         
 
         $sparepart = Sparepart::with('Detailsparepart.Kartugudangterakhir','Detailsparepart')->get();
         // return $sparepart;
-        // $detailsparepart = DetailSparepart::with('Kartugudangterakhir')->get(); 
 
         for($i = 0;  $i < count($po->Detailsparepart); $i++ ){
             for($j = 0;  $j < count($sparepart); $j++ ){

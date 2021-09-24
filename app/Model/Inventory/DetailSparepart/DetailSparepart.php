@@ -42,11 +42,6 @@ class DetailSparepart extends Model
         return $this->belongsTo(Gudang::class, 'id_gudang', 'id_gudang');
     }
 
-    // public function Gallery()
-    // {
-    //     return $this->hasMany(Gallery::class, 'id_detail_sparepart');
-    // }
-
     public function Kartugudang()
     {
         return $this->hasMany(Kartugudang::class, 'id_detail_sparepart', 'id_detail_sparepart');
@@ -72,7 +67,6 @@ class DetailSparepart extends Model
         return $this->hasOne(Kartugudang::class, 'id_detail_sparepart', 'id_detail_sparepart')->where('jenis_kartu', 'Penjualan')->orderBy('updated_at', 'DESC');
     }
 
-    
     protected static function booted()
     {
         static::addGlobalScope(new OwnershipScope);

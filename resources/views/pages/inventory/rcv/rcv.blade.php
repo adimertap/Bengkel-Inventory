@@ -215,7 +215,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_supplier">Supplier</label>
                             <input class="form-control" id="detailsupplier" type="text" name="id_supplier"
-                                placeholder="" value="{{ old('id_supplier') }}" readonly>
+                                placeholder="Otomatis Terisi" value="{{ old('id_supplier') }}" readonly>
                         </div>
                     </div>
                     <div class="row">

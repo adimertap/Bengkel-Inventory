@@ -508,7 +508,8 @@
                 url: '/inventory/receiving/' + id_rcv,
                 data: data,
                 success: function (response) {
-                    window.location.href = '/inventory/receiving'
+                    console.log(response)
+                    // window.location.href = '/inventory/receiving'
 
                 },
                 error: function (response) {

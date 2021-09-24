@@ -153,79 +153,74 @@ class RcvController extends Controller
         $qtyrcv = 0;
         $qtypo = 0;
 
+      
+
         foreach($request->sparepart as $key=>$item){
-            // $sparepart = DetailSparepart::get();
-            // for($i = 0;  $i < count(array($sparepart)); $i++ ){
-                $sparepart = DetailSparepart::where('id_sparepart', $item['id_sparepart'])->first();
-                if($sparepart->id_sparepart == $item['id_sparepart']){
-                  
-                  
-                    $sparepart->qty_stok = $sparepart->qty_stok + $item['qty_rcv'];
-                    $sparepart->stok_min = $item['stok_min'];
-                        if($sparepart->qty_stok >= $item['stok_min']){
-                            $sparepart->status_jumlah = 'Cukup';
-                        }else if($sparepart->qty_stok == 0){
-                            $sparepart->status_jumlah = 'Habis';
-                        }else{
-                            $sparepart->status_jumlah ='Kurang';
-                        }
-                    $sparepart->update();
+           
+            $sparepart = DetailSparepart::where('id_sparepart', $item['id_sparepart'])->first();
+            if(!$sparepart ){
+                $sparepart = new DetailSparepart;
+                $sparepart->id_sparepart = $item['id_sparepart'];
+                $sparepart->id_bengkel = Auth::user()->id_bengkel;
+                $sparepart->id_gudang = $item['id_gudang'];
+                $sparepart->qty_stok = $item['qty_rcv'];
+                $sparepart->stok_min = $item['stok_min'];
+                    if($sparepart->qty_stok >= $item['stok_min']){
+                        $sparepart->status_jumlah = 'Cukup';
+                    } else if($sparepart->qty_stok == 0){
+                        $sparepart->status_jumlah = 'Habis';
+                    }else{
+                        $sparepart->status_jumlah ='Kurang';
+                    }
 
-                    $kartu_gudang = new Kartugudang;
-                    $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-                    $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
-                        if($kartugudangterakhir != null)
+                $sparepart->harga_market = 0;
+                $sparepart->keterangan = 'Belum Terisi';
+                $sparepart->save();
+
+                $kartu_gudang = new Kartugudang;
+                $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+                $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
+                    if($kartugudangterakhir != null)
                         $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['qty_rcv'];
-        
-                        if($kartugudangterakhir == null)
+                    if($kartugudangterakhir == null)
                         $kartu_gudang->saldo_akhir = $item['qty_rcv'];
-        
-                    $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
-                    $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];
-                    $kartu_gudang->id_detail_sparepart = $sparepart->id_detail_sparepart;
-                    $kartu_gudang->kode_transaksi = $rcv->kode_rcv;
-                    $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
-                    $kartu_gudang->jenis_kartu = 'Receiving';
-                    $kartu_gudang->save();
-                    
-                }else if($sparepart->id_sparepart != $item['id_sparepart'] ){
-                
-                    $sparepart = new DetailSparepart;
-                    $sparepart->id_sparepart = $item['id_sparepart'];
-                    $sparepart->id_bengkel = Auth::user()->id_bengkel;
-                    $sparepart->id_gudang = $item['id_gudang'];
-                    $sparepart->qty_stok = $item['qty_rcv'];
-                    $sparepart->stok_min = $item['stok_min'];
-                        if($sparepart->qty_stok >= $item['stok_min']){
-                            $sparepart->status_jumlah = 'Cukup';
-                        } else if($sparepart->qty_stok == 0){
-                            $sparepart->status_jumlah = 'Habis';
-                        }else{
-                            $sparepart->status_jumlah ='Kurang';
-                        }
-                    $sparepart->harga_market = 0;
-                    $sparepart->keterangan = 'Belum Terisi';
-                    $sparepart->save();
+                $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
+                $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];
+                $kartu_gudang->id_detail_sparepart = $sparepart->id_detail_sparepart;
+                $kartu_gudang->kode_transaksi = $rcv->kode_rcv;
+                $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
+                $kartu_gudang->jenis_kartu = 'Receiving';
+                $kartu_gudang->save();  
+            }else{
+                $sparepart->qty_stok = $sparepart->qty_stok + $item['qty_rcv'];
+                $sparepart->stok_min = $item['stok_min'];
+                    if($sparepart->qty_stok >= $item['stok_min']){
+                        $sparepart->status_jumlah = 'Cukup';
+                    }else if($sparepart->qty_stok == 0){
+                        $sparepart->status_jumlah = 'Habis';
+                    }else{
+                        $sparepart->status_jumlah ='Kurang';
+                    }
+                $sparepart->save();
 
-                    $kartu_gudang = new Kartugudang;
-                    $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
-                    $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
-                        if($kartugudangterakhir != null)
-                            $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['qty_rcv'];
-        
-                        if($kartugudangterakhir == null)
-                            $kartu_gudang->saldo_akhir = $item['qty_rcv'];
-        
-                    $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
-                    $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];
-                    $kartu_gudang->id_detail_sparepart = $sparepart->id_detail_sparepart;
-                    $kartu_gudang->kode_transaksi = $rcv->kode_rcv;
-                    $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
-                    $kartu_gudang->jenis_kartu = 'Receiving';
-                    $kartu_gudang->save();
-                    
-                }
+                $kartu_gudang = new Kartugudang;
+                $kartu_gudang->id_bengkel = $request['id_bengkel'] = Auth::user()->id_bengkel;
+                $kartugudangterakhir =  $sparepart->Kartugudangsaldoakhir;
+                    if($kartugudangterakhir != null)
+                    $kartu_gudang->saldo_akhir = $kartugudangterakhir->saldo_akhir +  $item['qty_rcv'];
+                    if($kartugudangterakhir == null)
+                    $kartu_gudang->saldo_akhir = $item['qty_rcv'];
+                $kartu_gudang->jumlah_masuk = $kartu_gudang->jumlah_masuk + $item['qty_rcv'];
+                $kartu_gudang->harga_beli = $kartu_gudang->harga_beli + $item['harga_diterima'];
+                $kartu_gudang->id_detail_sparepart = $sparepart->id_detail_sparepart;
+                $kartu_gudang->kode_transaksi = $rcv->kode_rcv;
+                $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
+                $kartu_gudang->jenis_kartu = 'Receiving';
+                $kartu_gudang->save();
+
+                 
             }
+        }
         
             // DETAIL PO
             $detailpo = POdetail::where('id_po',$po->id_po)->where('id_sparepart',$item['id_sparepart'])->first();
