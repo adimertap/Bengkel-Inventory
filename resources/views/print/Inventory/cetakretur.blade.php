@@ -157,14 +157,10 @@
                                                         <td class="text-center">{{ $detail->Merksparepart->merk_sparepart }}</td>
                                                         <td class="text-center">{{ $detail->pivot->qty_retur }}</td>
                                                         <td class="text-center">{{ $detail->Konversi->satuan }}</td>
-                                                        <td class="text-center">{{ $detail->pivot->keterangan }}</td>
+                                                        <td class="text-center">{{ $detail->pivot->keterangan_retur }}</td>
                                                     </tr>
                                                     @empty
-                                                    <tr>
-                                                        <td colspan="7" class="text-center">
-                                                            Data Sparepart Kosong
-                                                        </td>
-                                                    </tr>
+                                                   
                                                     @endforelse
                                                 </tbody>
                                             </table>

@@ -41,7 +41,7 @@ class Retur extends Model
 
     public function Detailretur()
     {
-        return $this->belongsToMany(Sparepart::class,'tb_inventory_detretur','id_retur','id_sparepart')->withPivot('qty_retur','keterangan');
+        return $this->belongsToMany(Sparepart::class,'tb_inventory_detretur','id_retur','id_sparepart')->withPivot('qty_retur','keterangan_retur');
     }
 
     public function Rcv()

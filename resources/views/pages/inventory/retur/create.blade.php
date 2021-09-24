@@ -244,7 +244,7 @@
                                             <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td class="satuan_edit">{{ $sparepart->Konversi->satuan }}</td>
                                             <td class="qty_retur_edit">{{ $sparepart->pivot->qty_retur }}</td>
-                                            <td class="keterangan_retur_edit">{{ $sparepart->pivot->keterangan }}</td>
+                                            <td class="keterangan_retur_edit">{{ $sparepart->pivot->keterangan_retur }}</td>
                                             <td></td>
                                         </tr>
                                         @empty
@@ -284,9 +284,9 @@
                             placeholder="Input Quantity Retur" value="{{ $item->qty_retur }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan">Masukan Keterangan Retur</label>
-                        <textarea class="form-control" name="keterangan" type="text" id="keterangan"
-                            placeholder="Input Keterangan Retur">{{ $item->keterangan }}</textarea>
+                        <label class="small mb-1" for="keterangan_retur">Masukan Keterangan Retur</label>
+                        <textarea class="form-control" name="keterangan_retur" type="text" id="keterangan_retur"
+                            placeholder="Input Keterangan Retur">{{ $item->keterangan_retur }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -357,7 +357,7 @@
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
             var qty_retur = form.find('input[name="qty_retur"]').val()
-            var keterangan = form.find('textarea[name="keterangan"]').val()
+            var keterangan_retur = form.find('textarea[name="keterangan_retur"]').val()
 
             if (qty_retur == 0 | qty_retur == '') {
                 continue
@@ -367,7 +367,7 @@
                     id_sparepart: id_sparepart,
                     id_retur: id_retur,
                     qty_retur: qty_retur,
-                    keterangan: keterangan,
+                    keterangan_retur: keterangan_retur,
                 }
                 dataform2.push(obj)
             }
@@ -434,7 +434,7 @@
     function konfirmsparepart(event, id_sparepart) {
         var form = $('#form-' + id_sparepart)
         var qty_retur = form.find('input[name="qty_retur"]').val()
-        var keterangan = form.find('textarea[name="keterangan"]').val()
+        var keterangan_retur = form.find('textarea[name="keterangan_retur"]').val()
 
         if (qty_retur == 0 | qty_retur == '') {
             alert('Data Inputan Ada yang belum terisi')
@@ -455,7 +455,7 @@
 
             $('#dataTablekonfirmasi').DataTable().row.add([
                 nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
-                merk_sparepart, satuan, qty_retur, keterangan
+                merk_sparepart, satuan, qty_retur, keterangan_retur
             ]).draw();
         }
     }

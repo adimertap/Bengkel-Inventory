@@ -300,7 +300,7 @@
                             <input class="form-control harga_diterima" name="harga_diterima" type="number"
                                 id="harga_diterima" placeholder="Input Harga Beli"
                                 value="{{ $item->harga_satuan !=  null ? $item->harga_satuan : $item->Kartugudangterakhir['harga_beli'] }}"></input>
-                            <div class="small text-primary">Harga Pembelian Terakhir
+                            <div class="small text-primary">Harga Pembelian Terakhir (IDR):
                                 <span id="detailhargaditerima" class="detailhargaditerima">
                                     @if ($item->Detailsparepart == '' | $item->Detailsparepart == null )
                                         
@@ -318,7 +318,7 @@
                             <input class="form-control harga_diterima" name="harga_diterima" type="number"
                                 id="harga_diterima" placeholder="Input Harga Beli"
                                 value="{{ $item->harga_satuan !=  null ? $item->harga_satuan : $item->Detailsparepart->Kartugudangterakhir['harga_beli'] }}"></input>
-                            <div class="small text-primary">Harga Pembelian Terakhir
+                            <div class="small text-primary">Harga Pembelian Terakhir (IDR):
                                 <span id="detailhargaditerima" class="detailhargaditerima">
                                     @if ($item->Detailsparepart->Kartugudangterakhir == ''| $item->Detailsparepart->Kartugudangterakhir == null )
 

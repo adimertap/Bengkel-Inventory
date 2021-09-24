@@ -153,11 +153,12 @@ class RcvController extends Controller
         $qtyrcv = 0;
         $qtypo = 0;
 
-      
+        
 
         foreach($request->sparepart as $key=>$item){
            
             $sparepart = DetailSparepart::where('id_sparepart', $item['id_sparepart'])->first();
+            
             if(!$sparepart ){
                 $sparepart = new DetailSparepart;
                 $sparepart->id_sparepart = $item['id_sparepart'];
@@ -172,7 +173,6 @@ class RcvController extends Controller
                     }else{
                         $sparepart->status_jumlah ='Kurang';
                     }
-
                 $sparepart->harga_market = 0;
                 $sparepart->keterangan = 'Belum Terisi';
                 $sparepart->save();
@@ -217,8 +217,6 @@ class RcvController extends Controller
                 $kartu_gudang->tanggal_transaksi = $rcv->tanggal_rcv;
                 $kartu_gudang->jenis_kartu = 'Receiving';
                 $kartu_gudang->save();
-
-                 
             }
         }
         

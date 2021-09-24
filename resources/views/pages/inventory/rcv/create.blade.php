@@ -268,10 +268,10 @@
                                             <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
                                             <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="kemasan_edit">{{ $sparepart->Kemasan->nama_kemasan }}</td>
                                             <td class="qtypoedit">{{ $sparepart->pivot->qty_po }}</td>
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
                                             <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
-                                            <td class="gudangedit">{{ $sparepart->Gudang->nama_gudang }}, {{ $sparepart->Rak->nama_rak }}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
                                             <td></td>
                                         </tr>
@@ -509,7 +509,7 @@
                 data: data,
                 success: function (response) {
                     console.log(response)
-                    // window.location.href = '/inventory/receiving'
+                    window.location.href = '/inventory/receiving'
 
                 },
                 error: function (response) {

@@ -117,7 +117,7 @@
                                             <td>{{ $detail->Merksparepart->merk_sparepart }}</td>
                                             <td>{{ $detail->Konversi->satuan }}</td>
                                             <td>{{ $detail->pivot->qty_retur }}</td>
-                                            <td>{{ $detail->pivot->keterangan }}</td>
+                                            <td>{{ $detail->pivot->keterangan_retur }}</td>
                                         </tr>
                                         @empty
                                         <tr>
