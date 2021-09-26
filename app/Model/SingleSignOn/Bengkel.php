@@ -14,6 +14,7 @@ class Bengkel extends Model
 
     protected $fillable = [
         'nama_bengkel',
+        'id_jenis_bengkel',
         'alamat_bengkel',
         'longitude',
         'latitude',
@@ -27,6 +28,11 @@ class Bengkel extends Model
     ];
 
     public $timestamps = false;
+
+    public function JenisBengkel(){
+        return $this->belongsTo(JenisBengkel::class,'id_jenis_bengkel','id_jenis_bengkel');
+    }
+
 
     protected static function booted()
     {

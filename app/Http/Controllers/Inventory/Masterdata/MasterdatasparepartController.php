@@ -17,6 +17,7 @@ use App\Model\Inventory\Merksparepart;
 use App\Model\Inventory\Rak;
 use App\Model\Inventory\Sparepart;
 use App\Model\Inventory\Supplier;
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -32,8 +33,8 @@ class MasterdatasparepartController extends Controller
     {
 
         $sparepart = Sparepart::with([
-            'Jenissparepart', 'Merksparepart', 'Konversi', 'Kemasan'
-        ])->where('status_sparepart','=','Aktif')->get();
+            'Jenissparepart', 'Merksparepart', 'Konversi', 'Kemasan', 'JenisBengkel'
+        ])->where('status_sparepart','=','Aktif')->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)->get();
         
 
         // Sparepart Dikelompokan Berdasarkan Fungsinya
@@ -58,6 +59,7 @@ class MasterdatasparepartController extends Controller
         $merk_sparepart = Merksparepart::where('status_merk','=','Aktif')->get();
         $konversi = Konversi::get();
         $kemasan = Kemasan::get();
+        $jenis_bengkel = JenisBengkel::get();
 
         $id = Sparepart::getId();
         foreach ($id as $value);
@@ -68,7 +70,7 @@ class MasterdatasparepartController extends Controller
         $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
 
 
-        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_sparepart', 'merk_sparepart', 'konversi', 'gallery', 'rak', 'kode_sparepart', 'kemasan','supplier'));
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_bengkel','jenis_sparepart', 'merk_sparepart', 'konversi', 'gallery', 'rak', 'kode_sparepart', 'kemasan','supplier'));
     }
 
     /**
@@ -88,21 +90,41 @@ class MasterdatasparepartController extends Controller
 
         $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
 
-        $sparepart = new Sparepart;
-        $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
-        $sparepart->id_merk = $request->id_merk;
-        $sparepart->id_konversi = $request->id_konversi;
-        $sparepart->kode_sparepart = $kode_sparepart;
-        $sparepart->nama_sparepart = $request->nama_sparepart;
-        $sparepart->id_kemasan = $request->id_kemasan;
-        $sparepart->dimensi_berat = $request->dimensi_berat;
-        $sparepart->slug = Str::slug($request->nama_sparepart);
-        $sparepart->lifetime = $request->lifetime;
-        $sparepart->jenis_barang = $request->jenis_barang;
-        $sparepart->status_sparepart = 'Diajukan';
-        $sparepart->save();
+        if (Auth::user()->Bengkel->id_jenis_bengkel == '1'){
+            $sparepart = new Sparepart;
+            $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
+            $sparepart->id_merk = $request->id_merk;
+            $sparepart->id_konversi = $request->id_konversi;
+            $sparepart->kode_sparepart = $kode_sparepart;
+            $sparepart->nama_sparepart = $request->nama_sparepart;
+            $sparepart->id_kemasan = $request->id_kemasan;
+            $sparepart->dimensi_berat = $request->dimensi_berat;
+            $sparepart->slug = Str::slug($request->nama_sparepart);
+            $sparepart->lifetime = $request->lifetime;
+            $sparepart->jenis_barang = $request->jenis_barang;
+            $sparepart->status_sparepart = 'Diajukan';
+            $sparepart->id_jenis_bengkel = '1';
+            $sparepart->save();
+        }else if(Auth::user()->Bengkel->id_jenis_bengkel == '2'){
+            $sparepart = new Sparepart;
+            $sparepart->id_jenis_sparepart = $request->id_jenis_sparepart;
+            $sparepart->id_merk = $request->id_merk;
+            $sparepart->id_konversi = $request->id_konversi;
+            $sparepart->kode_sparepart = $kode_sparepart;
+            $sparepart->nama_sparepart = $request->nama_sparepart;
+            $sparepart->id_kemasan = $request->id_kemasan;
+            $sparepart->dimensi_berat = $request->dimensi_berat;
+            $sparepart->slug = Str::slug($request->nama_sparepart);
+            $sparepart->lifetime = $request->lifetime;
+            $sparepart->jenis_barang = $request->jenis_barang;
+            $sparepart->status_sparepart = 'Diajukan';
+            $sparepart->id_jenis_bengkel = '2';
+            $sparepart->save();
+        }
 
-        return redirect()->route('sparepart.create')->with('messageberhasil', 'Data Sparepart Berhasil diajukan - Mohon ditunggu untuk Approval Data');
+        
+
+        return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil diajukan - Mohon ditunggu untuk Approval Data');
     }
 
 

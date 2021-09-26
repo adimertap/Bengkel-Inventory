@@ -116,7 +116,10 @@ class PurchaseorderController extends Controller
 
         
 
-        $sparepart = Sparepart::with('Detailsparepart.Kartugudangterakhir','Detailsparepart')->get();
+        $sparepart = Sparepart::with('Detailsparepart.Kartugudangterakhir','Detailsparepart')
+            ->where('status_sparepart','=','Aktif')
+            ->where('id_jenis_bengkel','=',Auth::user()->Bengkel->id_jenis_bengkel)
+            ->get();
         // return $sparepart;
 
         for($i = 0;  $i < count($po->Detailsparepart); $i++ ){
