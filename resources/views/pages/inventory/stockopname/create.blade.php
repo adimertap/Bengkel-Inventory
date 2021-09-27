@@ -150,14 +150,10 @@
                                     <tbody>
                                         @forelse ($opname->Gudang->Sparepart as $item)
                                         <tr id="item-{{ $item->id_detail_sparepart }}" role="row" class="odd">
-                                            <th scope="row" class="small" class="sorting_1">
-                                                {{ $loop->iteration}}</th>
-                                            <td class="kode_sparepart">
-                                                {{ $item->Sparepart->kode_sparepart }}</td>
-                                            <td class="nama_sparepart">
-                                                {{ $item->Sparepart->nama_sparepart }}</td>
-                                            <td class="merk_sparepart">
-                                                {{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td class="kode_sparepart">{{ $item->Sparepart->kode_sparepart }}</td>
+                                            <td class="nama_sparepart">{{ $item->Sparepart->nama_sparepart }}</td>
+                                            <td class="merk_sparepart">{{ $item->Sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td><input class="form-control form-control-sm"
                                                     id="stock-real-{{ $item->id_detail_sparepart }}"
                                                     onchange="calculateSelisih({{ $item->id_detail_sparepart }}, {{ $item->qty_stok }})"
@@ -246,7 +242,21 @@
                                         </tr>
                                     </thead>
                                     <tbody id='konfirmasi'>
-
+                                        @forelse ($opname->Detailsparepart as $sparepart )
+                                        <tr id="item-{{ $sparepart->id_detail_sparepart }}" role="row" class="odd">
+                                            <td></td>
+                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->id_detail_sparepart }}"></span>{{ $sparepart->Sparepart->kode_sparepart }}</td>
+                                            <td class="nama_sparepartedit">{{ $sparepart->Sparepart->nama_sparepart }}</td>
+                                            <td class="merk_sparepartedit">{{ $sparepart->Sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="kemasan_edit">{{ $sparepart->Sparepart->Konversi->satuan }}</td>
+                                            <td class="jumlahreal_edit">{{ $sparepart->pivot->jumlah_real }}</td>
+                                            <td class="selisih_edit">{{ $sparepart->pivot->selisih }}</td>
+                                            <td class="keterangan_edit">{{ $sparepart->pivot->keterangan_detail }}</td>
+                                            <td></td>
+                                        </tr>
+                                        @empty
+                                            
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -337,7 +347,7 @@
             // Keterangan
             var tdketerangan = children[7]
             var keterangan_detail = $(tdketerangan).html()
-            var id_bengkel = $('#id_bengkel').text()
+           
 
             var obj = {
                 id_detail_sparepart: id_detail_sparepart,
@@ -414,6 +424,8 @@
         // draw() Reset Ulang Table
         var table = $('#dataTable').DataTable()
     }
+
+    
 
     $(document).ready(function () {
         var table = $('#dataTableSparepart').DataTable({

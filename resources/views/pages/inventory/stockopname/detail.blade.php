@@ -29,11 +29,19 @@
                 <div class="card-header">Detail Opname
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <label class="small mb-1" for="kode_opname">Kode Opname</label>
-                        <input class="form-control form-control-sm" id="kode_opname" type="text" name="kode_opname"
-                            value="{{ $opname->kode_opname }}" readonly />
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="small mb-1" for="kode_opname">Kode Opname</label>
+                            <input class="form-control form-control-sm" id="kode_opname" type="text" name="kode_opname"
+                                value="{{ $opname->kode_opname }}" readonly />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label class="small mb-1" for="kode_opname">Lokasi Opname Gudang</label>
+                            <input class="form-control form-control-sm" id="kode_opname" type="text" name="kode_opname"
+                                value="{{ $opname->Gudang->nama_gudang }}" readonly />
+                        </div>
                     </div>
+                   
                     <div class="form-group">
                         <label class="small mb-1" for="id_pegawai">Pegawai</label>
                         <input class="form-control form-control-sm" id="id_pegawai" type="text" name="id_pegawai"
@@ -94,18 +102,15 @@
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Sparepart</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Lokasi Rak</th>
+                                                    style="width: 230px;">Jumlah Sistem</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Jumlah Real</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Jumlah Sistem</th>
+                                                
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
@@ -121,21 +126,10 @@
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $detail->nama_sparepart }}</td>
-                                                <td>{{ $detail->Rak->nama_rak }}</td>
+                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
+                                                <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}</td>
                                                 <td>{{ $detail->pivot->jumlah_real }}</td>
-                                                <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}
-                                                    {{-- @if($opname->approve == 'Pending')
-                                                    Menunggu Approval
-                                                    @elseif($opname->approve == 'Not Approved')
-                                                    {{ $opname->approve }}
-                                                    @elseif($opname->approve == 'Approved')
-                                                    {{ $opname->approve }}
-                                                    @else
-                                                    <span>
-                                                        @endif
-                                                    </span> --}}
-                                                </td>
+                                               
                                                 <td>{{ $detail->pivot->selisih }}
                                                 </td>
                                                 <td>{{ $detail->pivot->keterangan_detail }}</td>

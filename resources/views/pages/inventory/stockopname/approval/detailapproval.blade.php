@@ -92,18 +92,15 @@
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Sparepart</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Lokasi Rak</th>
+                                                    style="width: 230px;">Jumlah Sistem</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Jumlah Real</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Start date: activate to sort column ascending"
-                                                    style="width: 230px;">Jumlah Sistem</th>
+                                             
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
@@ -119,11 +116,9 @@
                                             <tr role="row" class="odd">
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
                                                 </th>
-                                                <td>{{ $detail->nama_sparepart }}</td>
-                                                <td>{{ $detail->Rak->nama_rak }}</td>
+                                                <td>{{ $detail->Sparepart->nama_sparepart }}</td>
+                                                <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}</td>
                                                 <td>{{ $detail->pivot->jumlah_real }}</td>
-                                                <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}
-                                                </td>
                                                 <td>{{ $detail->pivot->selisih }}
                                                 </td>
                                                 <td>{{ $detail->pivot->keterangan_detail }}</td>

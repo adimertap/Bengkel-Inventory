@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inventory\DetailSparepart\DetailSparepart;
 use App\Model\Inventory\Purchase\PO;
 use App\Model\Inventory\Rcv\Rcv;
 use App\Model\Inventory\Retur\Retur;
@@ -32,10 +33,9 @@ class DashboardinventoryController extends Controller
             'retur' => Retur::count(),
             'retur_today' => Retur::whereDate('tanggal_retur', Carbon::today())->count(),
             // REVISI 3 DIBAWAH
-            'sparepart_akan_habis' => Sparepart::where('status_sparepart', 'Aktif')->count(),
-            'sparepart_habis' => Sparepart::where('status_sparepart', 'Aktif')->count(),
-            'sparepart_kosong' => Sparepart::count(),
-
+            'sparepart_akan_habis' => DetailSparepart::where('status_jumlah', 'Kurang')->count(),
+            'sparepart_habis' => DetailSparepart::where('status_jumlah', 'Habis')->count(),
+            'sparepart_kosong' => DetailSparepart::where('status_jumlah', 'Cukup')->count(),
 
             'po_belum_datang' => PO::where('status','Dikirim')->count(),
             'poap_pending' => PO::where('approve_ap','Pending')->count(),
