@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\New_;
+use Illuminate\Support\Str;
 
 class RcvController extends Controller
 {
@@ -166,6 +167,10 @@ class RcvController extends Controller
                 $sparepart->id_gudang = $item['id_gudang'];
                 $sparepart->qty_stok = $item['qty_rcv'];
                 $sparepart->stok_min = $item['stok_min'];
+
+                // $post->slug  = $post->id . '-' . str_slug($post->title,'-');
+
+                $sparepart->slug = Str::slug(Auth::user()->bengkel->nama_bengkel . '-' . $sparepart->Sparepart->nama_sparepart);
                     if($sparepart->qty_stok >= $item['stok_min']){
                         $sparepart->status_jumlah = 'Cukup';
                     } else if($sparepart->qty_stok == 0){
