@@ -10,12 +10,13 @@
                 <h1 class="mb-0">Sparepart {{ $detailsparepart->Sparepart->nama_sparepart }}</h1>
                 <div class="small">
                     <span class="font-weight-500 text-primary">Detail</span>
-                    · Sparepart 
+                    · Sparepart
                 </div>
             </div>
             <div>
                 <div class="col-12 col-xl-auto mb-3">
-                    <a href="{{ route('Kartu-gudang.index') }}" class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
+                    <a href="{{ route('Kartu-gudang.index') }}"
+                        class="btn btn-sm btn-light text-primary mr-2">Kembali</a>
                 </div>
             </div>
         </div>
@@ -42,8 +43,8 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_jenis_spareprat">Jenis Sparepart</label>
                             <input class="form-control form-control-sm" id="id_jenis_spareprat" type="text"
-                                name="id_jenis_spareprat" value="{{ $detailsparepart->Sparepart->jenissparepart->jenis_sparepart }}"
-                                readonly />
+                                name="id_jenis_spareprat"
+                                value="{{ $detailsparepart->Sparepart->jenissparepart->jenis_sparepart }}" readonly />
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_merk">Merk Sparepart</label>
@@ -55,7 +56,8 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="nama_kemasan">Kemasan</label>
                             <input class="form-control form-control-sm" id="nama_kemasan" type="text"
-                                name="nama_kemasan" value="{{ $detailsparepart->Sparepart->Kemasan->nama_kemasan }}" readonly />
+                                name="nama_kemasan" value="{{ $detailsparepart->Sparepart->Kemasan->nama_kemasan }}"
+                                readonly />
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="id_konversi">Satuan </label>
@@ -75,18 +77,14 @@
                                 value="{{ $detailsparepart->Sparepart->jenis_barang }}" readonly />
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_rak">Lokasi Gudang </label>
-                            <input class="form-control form-control-sm" id="id_rak" type="text" name="id_rak"
-                                value="{{ $detailsparepart->Gudang->nama_gudang }}" readonly />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1" for="id_rak">Lokasi Rak </label>
-                            <input class="form-control form-control-sm" id="id_rak" type="text" name="id_rak"
-                                value="{{ $detailsparepart->Rak->nama_rak }}" readonly />
-                        </div>
+
+                    <div class="form-group">
+                        <label class="small mb-1" for="id_rak">Lokasi Gudang </label>
+                        <input class="form-control form-control-sm" id="id_rak" type="text" name="id_rak"
+                            value="{{ $detailsparepart->Gudang->nama_gudang }}" readonly />
                     </div>
+
+
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="stock_min">Quantity Stok</label>
@@ -99,17 +97,18 @@
                             <input class="form-control form-control-sm" id="stock_min" type="text" name="stock_min"
                                 value="{{ $detailsparepart->stok_min }}" readonly />
                         </div>
-                       
+
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="berat_sparepart">Dimensi Berat</label><small
-                            class="text-muted">*gram</small>
+                                class="text-muted">*gram</small>
                             <input class="form-control form-control-sm" id="berat_sparepart" type="text"
-                                name="berat_sparepart" value="{{ $detailsparepart->Sparepart->dimensi_berat }}" readonly />
+                                name="berat_sparepart" value="{{ $detailsparepart->Sparepart->dimensi_berat }}"
+                                readonly />
                         </div>
                     </div>
-                   
+
                     <hr class="my-4" />
                 </div>
             </div>
@@ -162,10 +161,12 @@
                                         <thead>
                                             <tr role="row">
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                                    colspan="1" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending"
                                                     style="width: 20px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                    colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                    colspan="1"
+                                                    aria-label="Start date: activate to sort column ascending"
                                                     style="width: 230px;">Foto</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
