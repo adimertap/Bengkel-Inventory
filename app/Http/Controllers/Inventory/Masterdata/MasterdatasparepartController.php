@@ -70,7 +70,7 @@ class MasterdatasparepartController extends Controller
         $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
 
 
-        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_bengkel','jenis_sparepart', 'merk_sparepart', 'konversi', 'gallery', 'rak', 'kode_sparepart', 'kemasan','supplier'));
+        return view('pages.inventory.masterdata.sparepart.create', compact('jenis_bengkel','jenis_sparepart', 'merk_sparepart', 'konversi', 'kode_sparepart', 'kemasan'));
     }
 
     /**
