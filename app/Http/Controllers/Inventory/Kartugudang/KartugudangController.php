@@ -113,7 +113,7 @@ class KartugudangController extends Controller
 
     public function CetakKartu($id_detail_sparepart){
         $sparepart = DetailSparepart::with('Sparepart','Sparepart.Jenissparepart','Sparepart.Merksparepart')->findOrFail($id_detail_sparepart);
-        $kartu_gudang = Kartugudang::where('id_detail_sparepart', $id_detail_sparepart)->get();
+        $kartu_gudang = Kartugudang::with('Sparepart','Sparepart.Sparepart')->where('id_detail_sparepart', $id_detail_sparepart)->get();
 
         // return $sparepart;
 

@@ -134,7 +134,7 @@
                                             </td>
                                             <td class="text-center">{{ $item->jumlah_keluar }}
                                             </td>
-                                            <td class="text-center">{{ $item->Sparepart->Konversi->satuan }}</td>
+                                            <td class="text-center">{{ $item->Sparepart->Sparepart->Konversi->satuan }}</td>
                                             <td class="text-center">{{ $item->saldo_akhir }}</td>
                                             <td class="text-center">Rp.{{ number_format($item->harga_beli,2,',','.')}}
                                             </td>
