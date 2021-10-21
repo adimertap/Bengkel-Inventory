@@ -115,7 +115,7 @@ class KartugudangController extends Controller
         $sparepart = DetailSparepart::with('Sparepart','Sparepart.Jenissparepart','Sparepart.Merksparepart')->findOrFail($id_detail_sparepart);
         $kartu_gudang = Kartugudang::where('id_detail_sparepart', $id_detail_sparepart)->get();
 
-        return $sparepart;
+        // return $sparepart;
 
         $tanggal = Carbon::now()->format('F Y');
         $now = Carbon::now();

@@ -71,7 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $sparepart->Jenissparepart->jenis_sparepart }}
+                                        <label class="small">: {{ $sparepart->sparepart->Jenissparepart->jenis_sparepart }}
                                         </label>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $sparepart->Merksparepart->merk_sparepart }} </label>
+                                        <label class="small">: {{ $sparepart->sparepart->Merksparepart->merk_sparepart }} </label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: {{ $sparepart->stock }} </label>
+                                        <label class="small">: {{ $sparepart->qty_stok }} </label>
                                     </div>
                                 </div>
                             </div>
