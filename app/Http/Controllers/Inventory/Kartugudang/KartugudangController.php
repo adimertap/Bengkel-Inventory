@@ -113,7 +113,7 @@ class KartugudangController extends Controller
 
     public function CetakKartu($id_detail_sparepart){
         $sparepart = DetailSparepart::findOrFail($id_detail_sparepart);
-        $kartu_gudang = Kartugudang::where('id_detai$id_detail_sparepart', $id_detail_sparepart)->get();
+        $kartu_gudang = Kartugudang::where('id_detail_sparepart', $id_detail_sparepart)->get();
 
         $tanggal = Carbon::now()->format('F Y');
         $now = Carbon::now();
