@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Masterdata;
 use App\Http\Requests\Inventory\Supplierrequest;
 use App\Model\Inventory\Supplier;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Inventory\Masterdata\MasterdataSupplierRequest as MasterdataMasterdataSupplierRequest;
 use App\Http\Requests\Inventory\Masterdata\Suppliereditrequest;
 use App\Http\Requests\Inventory\Masterdata\SupplierRequest as MasterdataSupplierRequest;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class MasterdatasupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MasterdataSupplierRequest $request)
+    public function store(MasterdataMasterdataSupplierRequest $request)
     {
         $id = Supplier::getId();
         foreach($id as $value);

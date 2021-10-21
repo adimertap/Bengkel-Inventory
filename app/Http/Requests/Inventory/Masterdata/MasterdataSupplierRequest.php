@@ -4,7 +4,7 @@ namespace App\Http\Requests\Inventory\Masterdata;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupplierRequest extends FormRequest
+class MasterdataSupplierRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
