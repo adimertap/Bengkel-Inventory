@@ -50,9 +50,8 @@ class MasterdatagalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Galleryrequest $request)
     {
-        // return $request;
           $image = new Gallery;
   
           if ($request->file('photo')) {
