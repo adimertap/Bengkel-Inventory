@@ -52,6 +52,7 @@ class MasterdatagalleryController extends Controller
      */
     public function store(Galleryrequest $request)
     {
+        return $request;
           $image = new Gallery;
   
           if ($request->file('photo')) {
