@@ -414,13 +414,13 @@
             var tdharga = children[6]
             var harga_satuan_tes= $(tdharga).html()
             var harga_satuan = harga_satuan_tes.replace('Rp', '').replace('&nbsp;', '')
-                .replace('.', '').replace('.', '').replace(',', '').trim()
+                .replace('.', '').replace('.', '').replace(',', '').replace(',00', '').trim()
 
             // Harga Beli
             var tdtotal_harga = children[7]
             var total_harga_tes = $(tdtotal_harga).html()
             var total_harga = total_harga_tes.replace('Rp', '').replace('&nbsp;', '')
-                .replace('.', '').replace('.', '').replace(',', '').trim()
+                .replace('.', '').replace('.', '').replace(',', '').replace(',00', '').trim()
 
             console.log(id_sparepart, qty, harga_satuan, total_harga)
 
