@@ -519,6 +519,8 @@
                 merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
 
+            $(`#Modaltambah-${id_sparepart}`).modal('hide')
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
