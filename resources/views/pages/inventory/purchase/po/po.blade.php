@@ -526,10 +526,10 @@
                     });
                 },
                 success: function (response) {
-                    swal.fire({
-                        icon: 'success',
-                        html: '<h5>Success!</h5>'
-                    });
+                    Swal.fire(
+                        'Success!',
+                        'Redirect to Create Data!',
+                        )
                     window.location.href = '/inventory/purchase-order/' + response.id_po + '/edit'
                 },
                 error: function (error) {
