@@ -521,8 +521,6 @@
          
              $(`#buttonclose-${id_sparepart}`).click()
 
-       
-
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -554,12 +552,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 var table = $('#dataTableKonfirmasi').DataTable()
-                // Akses Parent Sampai <tr></tr>
                 var row = $(element).parent().parent()
-                console.log(row)
                 table.row(row).remove().draw();
-                alert('Data Sparepart Berhasil di Hapus')
-                // draw() Reset Ulang Table
                 var table = $('#dataTable').DataTable()
                 Swal.fire(
                     'Deleted!',
@@ -573,31 +567,10 @@
 
     function editsparepart(element) {
         var table = $('#dataTableKonfirmasi').DataTable()
-        // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
-
         var children = $(row).children()[1]
-        console.log(children)
         var kode = $($(children).children()[0]).html().trim()
-        console.log(kode)
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-
-        Toast.fire({
-            icon: 'success',
-            title: 'Berhasil Menambahkan Data Sparepart'
-        })
     }
 
     // 
