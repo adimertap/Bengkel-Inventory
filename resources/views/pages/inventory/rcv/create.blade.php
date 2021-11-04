@@ -532,7 +532,11 @@
         var stok_min = form.find('input[name=stok_min]').val()
 
         if (qty_rcv == 0 | qty_rcv == '' | harga_diterima_fix == 0 | harga_diterima_fix == '' | id_gudang == 'Pilih Gudang' | id_gudang == '' | stok_min == '') {
-            alert('Data Inputan Ada yang belum terisi')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terdapat Field Data Kosong!',
+            })
         } else {
             var data = $('#item-' + id_sparepart)
             var qty = $(data.find('.qty')[0]).text()
