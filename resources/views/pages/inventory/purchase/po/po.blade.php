@@ -466,27 +466,26 @@
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
         var no_telp = $(data.find('.telephone')[0]).text()
         var nama_sales = $(data.find('.nama_sales')[0]).text()
-        const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            }),
-
-            Toast.fire({
-                icon: 'success',
-                title: 'Berhasil Menambahkan Data Supplier'
-            }),
-
-
-            $('#detailsupplier').val(nama_supplier)
+       
+        $('#detailsupplier').val(nama_supplier)
         $('#detailnotelp').val(no_telp)
         $('#detailnamasales').val(nama_sales)
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Berhasil Menambahkan Data Supplier'
+        })
     }
 
     function submit1() {
