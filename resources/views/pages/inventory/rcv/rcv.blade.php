@@ -222,7 +222,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="no_do">Nomor DO</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <input class="form-control" id="no_do" type="text" name="no_do"
+                            <input class="form-control" id="no_do" type="number" name="no_do"
                                 placeholder="Input Nomor Delivery" value="{{ old('no_do') }}"
                                 class="form-control @error('no_do') is-invalid @enderror" />
                             @error('no_do')<div class="text-danger small mb-1">{{ $message }}
