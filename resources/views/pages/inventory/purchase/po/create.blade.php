@@ -375,11 +375,11 @@
 @endforelse
 
 <template id="template_delete_button">
-    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
-        <i class="fas fa-trash"></i>
-    </button>
     <button class="btn btn-primary btn-datatable" onclick="editsparepart(this)" type="button">
         <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
+        <i class="fas fa-trash"></i>
     </button>
 </template>
 
@@ -493,7 +493,7 @@
             currency: 'IDR'
         }).format(qty * harga_satuan)
 
-        if (qty == 0 | qty == '' | harga_diterima == '' | harga_diterima == 0) {
+        if (qty == 0 | qty == '' | harga_satuan == '' | harga_satuan == 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -555,11 +555,6 @@
                 var row = $(element).parent().parent()
                 table.row(row).remove().draw();
                 var table = $('#dataTable').DataTable()
-                Swal.fire(
-                    'Deleted!',
-                    'Data Sparepart Telah Terhapus.',
-                    'success'
-                )
             }
         })
 
