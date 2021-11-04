@@ -489,9 +489,7 @@
             var merk_sparepart = $(data.find('.merk_sparepart')[0]).text()
             var satuan = $(data.find('.satuan')[0]).text()
             var template = $($('#template_delete_button').html())
-
             var table = $('#dataTablekonfirmasi').DataTable()
-            // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
             var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 

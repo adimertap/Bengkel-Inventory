@@ -400,59 +400,66 @@
 
 <div class="modal fade" id="Modalsupplier" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog modal-xl" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content ">
             <div class="modal-header bg-light ">
                 <h5 class="modal-title">Pilih Supplier</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-borderless mb-0">
-                        <thead class="border-bottom">
-                            <tr class="small text-uppercase text-muted">
-                                <th scope="col">Nama Supplier</th>
-                                <th scope="col">Telephone</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Nama Sales</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($supplier as $item)
-                            <tr id="item-{{ $item->id_supplier }}" class="border-bottom">
-                                <td>
-                                    <div class="font-weight-bold nama_supplier">{{ $item->nama_supplier }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block telephone">{{ $item->telephone }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block alamat_supplier">
-                                        {{ $item->alamat_supplier }}</div>
-                                </td>
-                                <td>
-                                    <div class="small text-muted d-none d-md-block nama_sales">{{ $item->nama_sales }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-success btn-sm btn-datatable"
-                                        onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
-                                        data-dismiss="modal">Tambah
-                                    </button>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7" class="tex-center">
-                                    Data Supplier Kosong
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="datatable">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-hover dataTable" id="dataTableSupplier" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending" style="width: 20px;">
+                                                No</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 50px;">Kode Supplier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Office: activate to sort column ascending"
+                                                style="width: 140px;">Supplier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Start date: activate to sort column ascending"
+                                                style="width: 50px;">Telephone Supplier</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 150px;">Alamat</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 50px;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($supplier as $item)
+                                        <tr id="item-{{ $item->id_supplier }}" role="row" class="odd">
+                                            <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                            <td class="kode_supplier">{{ $item->kode_supplier }}</td>
+                                            <td class="nama_supplier">{{ $item->nama_supplier }}</td>
+                                            <td class="telephone">{{ $item->telephone }}</td>
+                                            <td class="alamat_supplier">{{ $item->alamat_supplier }}</td>
+                                            <td>
+                                                <button class="btn btn-success btn-xs"
+                                                    onclick="tambahsupplier(event, {{ $item->id_supplier }})" type="button"
+                                                    data-dismiss="modal">Tambah
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                       
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
