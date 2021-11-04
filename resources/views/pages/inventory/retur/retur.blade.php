@@ -244,7 +244,7 @@
                                                 No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 80px;">Kode Supplier</th>
+                                                style="width: 50px;">Kode Supplier</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Office: activate to sort column ascending"
                                                 style="width: 140px;">Supplier</th>
@@ -253,10 +253,10 @@
                                                 style="width: 50px;">Telephone Supplier</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 100px;">Alamat</th>
+                                                style="width: 150px;">Alamat</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 90px;">Actions</th>
+                                                style="width: 50px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

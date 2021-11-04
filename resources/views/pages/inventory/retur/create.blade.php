@@ -289,12 +289,14 @@
                     </div>
                     <hr class="my-4">
                     <div class="form-group">
-                        <label class="small mb-1" for="qty_retur">Masukan Quantity Retur</label>
+                        <label class="small mb-1 mr-1" for="qty_retur">Masukan Quantity Retur</label><span class="mr-4 mb-3"
+                        style="color: red">*</span>
                         <input class="form-control" name="qty_retur" type="number" id="qty_retur"
                             placeholder="Input Quantity Retur" value="{{ $item->qty_retur }}"></input>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1" for="keterangan_retur">Masukan Keterangan Retur</label>
+                        <label class="small mb-1 mr-1" for="keterangan_retur">Masukan Keterangan Retur</label><span class="mr-4 mb-3"
+                        style="color: red">*</span>
                         <textarea class="form-control" name="keterangan_retur" type="text" id="keterangan_retur"
                             placeholder="Input Keterangan Retur">{{ $item->keterangan_retur }}</textarea>
                     </div>
