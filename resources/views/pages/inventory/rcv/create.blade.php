@@ -542,6 +542,7 @@
                 success: function (response) {
                     swal.fire({
                         icon: 'success',
+                        showConfirmButton: false,
                         html: '<h5>Success!</h5>'
                     });
                     window.location.href = '/inventory/receiving'
@@ -569,7 +570,7 @@
         var id_gudang = form.find('select[name=id_gudang]').val()
         var stok_min = form.find('input[name=stok_min]').val()
 
-        if (qty_rcv == 0 | qty_rcv == '' | harga_diterima_fix == 0 | harga_diterima_fix == '' | id_gudang ==
+        if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '' | id_gudang ==
             'Pilih Gudang' | id_gudang == '' | stok_min == '') {
             Swal.fire({
                 icon: 'error',
