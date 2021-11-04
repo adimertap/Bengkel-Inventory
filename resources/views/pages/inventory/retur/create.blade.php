@@ -16,7 +16,8 @@
                         <div class="small">
                             <span class="font-weight-500">Retur</span>
                             · Tambah · Data
-                            <span class="font-weight-500 text-primary" id="id_bengkel" style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
+                            <span class="font-weight-500 text-primary" id="id_bengkel"
+                                style="display:none">{{ Auth::user()->bengkel->id_bengkel}}</span>
                         </div>
                     </div>
                     <div class="col-12 col-xl-auto">
@@ -50,7 +51,8 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
                                 <input class="form-control" id="id_pegawai" type="text" name="id_pegawai"
-                                    placeholder="Input Kode Receiving" value="{{ Auth::user()->pegawai->nama_pegawai }}" readonly>
+                                    placeholder="Input Kode Receiving" value="{{ Auth::user()->pegawai->nama_pegawai }}"
+                                    readonly>
                                 @error('id_pegawai')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
@@ -138,7 +140,8 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ($detailsparepart as $item)
-                                                <tr id="item-{{ $item->sparepart->id_sparepart }}" role="row" class="odd">
+                                                <tr id="item-{{ $item->sparepart->id_sparepart }}" role="row"
+                                                    class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
                                                     <td class="kode_sparepart">
@@ -152,17 +155,20 @@
                                                         {{ $item->sparepart->Merksparepart->merk_sparepart }}</td>
                                                     <td class="satuan">{{ $item->sparepart->Konversi->satuan }}
                                                     </td>
-                                                    <td class="text-center kemasan">{{ $item->sparepart->Kemasan->nama_kemasan }}
+                                                    <td class="text-center kemasan">
+                                                        {{ $item->sparepart->Kemasan->nama_kemasan }}
                                                     </td>
                                                     <td>
-                                                        <button id="{{ $item->sparepart->kode_sparepart }}-button" class="btn btn-success btn-datatable" type="button" data-toggle="modal"
+                                                        <button id="{{ $item->sparepart->kode_sparepart }}-button"
+                                                            class="btn btn-success btn-datatable" type="button"
+                                                            data-toggle="modal"
                                                             data-target="#Modaltambah-{{ $item->sparepart->id_sparepart }}">
                                                             <i class="fas fa-plus"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
                                                 @empty
-                                               
+
                                                 @endforelse
                                             </tbody>
                                         </table>
@@ -172,7 +178,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+                </form>
             </div>
         </div>
     </div>
@@ -239,16 +245,20 @@
                                         @forelse ($retur->Detailretur as $sparepart)
                                         <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
                                             <td></td>
-                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
+                                            <td class="kode_sparepartedit"><span
+                                                    id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span>
+                                            </td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
-                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="merk_sparepartedit">
+                                                {{ $sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td class="satuan_edit">{{ $sparepart->Konversi->satuan }}</td>
                                             <td class="qty_retur_edit">{{ $sparepart->pivot->qty_retur }}</td>
-                                            <td class="keterangan_retur_edit">{{ $sparepart->pivot->keterangan_retur }}</td>
+                                            <td class="keterangan_retur_edit">{{ $sparepart->pivot->keterangan_retur }}
+                                            </td>
                                             <td></td>
                                         </tr>
                                         @empty
-                                            
+
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -269,7 +279,7 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Detail Receiving</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close" id="buttonclose-{{ $item->sparepart->id_sparepart }}"><span
                         aria-hidden="true">×</span></button>
             </div>
             <form action="" method="POST" id="form-{{ $item->sparepart->id_sparepart }}" class="d-inline">
@@ -291,8 +301,9 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" onclick="konfirmsparepart(event,{{ $item->sparepart->id_sparepart }})"
-                        type="button" data-dismiss="modal">Tambah</button>
+                    <button class="btn btn-success"
+                        onclick="konfirmsparepart(event,{{ $item->sparepart->id_sparepart }})" type="button"
+                        data-dismiss="modal">Tambah</button>
                 </div>
             </form>
         </div>
@@ -319,7 +330,7 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-primary" type="button"
-                    onclick="tambahretur(event,{{ $detailsparepart }},{{ $retur->id_retur }})">Ya Sudah!</button>
+                    onclick="tambahretur(event,{{ $detailsparepart }},{{ $retur->id_retur }})" data-dismiss="modal">Ya Sudah!</button>
             </div>
         </div>
     </div>
@@ -351,7 +362,6 @@
         var id_pegawai = form1.find('input[name="id_pegawai"]').val()
         var tanggal_retur = form1.find('input[name="tanggal_retur"]').val()
         var dataform2 = []
-        console.log(dataform2)
         var _token = form1.find('input[name="_token"]').val()
 
         for (var i = 0; i < sparepart.length; i++) {
@@ -374,8 +384,15 @@
         }
 
         if (dataform2.length == 0) {
-            var alert = $('#alertsparepartkosong').show()
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Anda Belum Memilih Sparepart!',
+            })
         } else {
+            var sweet_loader =
+                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+
             var data = {
                 _token: _token,
                 kode_retur: kode_retur,
@@ -384,18 +401,38 @@
                 sparepart: dataform2
             }
 
-            // console.log(data)
+           
 
             $.ajax({
                 method: 'put',
                 url: '/inventory/retur/' + id_retur,
                 data: data,
+                beforeSend: function () {
+                    swal.fire({
+                        title: 'Mohon Tunggu!',
+                        html: 'Data Retur Sedang Diproses...',
+                        showConfirmButton: false,
+                        onRender: function () {
+                            // there will only ever be one sweet alert open.
+                            $('.swal2-content').prepend(sweet_loader);
+                        }
+                    });
+                },
                 success: function (response) {
+                    swal.fire({
+                        icon: 'success',
+                        showConfirmButton: false,
+                        html: '<h5>Success!</h5>'
+                    });
                     window.location.href = '/inventory/retur'
 
                 },
                 error: function (response) {
                     console.log(response)
+                    swal.fire({
+                        icon: 'error',
+                        html: '<h5>Error!</h5>'
+                    });
                 }
             });
         }
@@ -437,9 +474,12 @@
         var keterangan_retur = form.find('textarea[name="keterangan_retur"]').val()
 
         if (qty_retur == 0 | qty_retur == '') {
-            alert('Data Inputan Ada yang belum terisi')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terdapat Field Data Kosong!',
+            })
         } else {
-            alert('Berhasil Menambahkan Sparepart')
             var data = $('#item-' + id_sparepart)
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
             var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
@@ -457,27 +497,55 @@
                 nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 merk_sparepart, satuan, qty_retur, keterangan_retur
             ]).draw();
+
+            $(`#buttonclose-${id_sparepart}`).click()
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Menambahkan Data Sparepart'
+            })
         }
     }
 
     function hapussparepart(element) {
-        var table = $('#dataTablekonfirmasi').DataTable()
-        // Akses Parent Sampai <tr></tr>
-        var row = $(element).parent().parent()
-        table.row(row).remove().draw();
-        alert('Data Sparepart Berhasil di Hapus')
-        // draw() Reset Ulang Table
-        var table = $('#dataTable').DataTable()
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var table = $('#dataTablekonfirmasi').DataTable()
+                var row = $(element).parent().parent()
+                table.row(row).remove().draw();
+                var table = $('#dataTable').DataTable()
+            }
+        })
+    
+        
     }
 
-    function editsparepart(element){
+    function editsparepart(element) {
         var table = $('#dataTablekonfirmasi').DataTable()
-        // Akses Parent Sampai <tr></tr>
         var row = $(element).parent().parent()
         var children = $(row).children()[1]
         console.log(children)
         var kode = $($(children).children()[0]).html().trim()
-        
         $(`#${$.escapeSelector(kode)}-button`).trigger('click');
     }
 
