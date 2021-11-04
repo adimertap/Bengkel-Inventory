@@ -334,12 +334,12 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="qty_rcv">Quantity Receive</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <input class="form-control" name="qty_rcv" type="number" id="qty_rcv"
+                            <input class="form-control" name="qty_rcv" type="number" id="qty_rcv" min="1"
                                 placeholder="Input Quantity Rcv" value="{{ $item->qty_rcv }}"></input>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="harga_diterima">Harga diterima</label>
-                            <input class="form-control harga_diterima" name="harga_diterima" type="number"
+                            <input class="form-control harga_diterima" name="harga_diterima" type="number" 
                                 placeholder="Input Harga Beli diterima" value="{{ $item->pivot->harga_satuan }}">
                             </input>
                             <div class="small text-primary">Harga (IDR):
@@ -375,7 +375,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="stok_min">Stok Minimum</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <input class="form-control" name="stok_min" type="number" id="stok_min"
+                            <input class="form-control" name="stok_min" type="number" id="stok_min" min="1"
                                 placeholder="Input Stok Minimum" value="{{ old('stok_min') }}"></input>
                         </div>
                     </div>
@@ -402,7 +402,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="stok_min">Stok Minimum</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <input class="form-control" name="stok_min" type="number" id="stok_min"
+                            <input class="form-control" name="stok_min" type="number" id="stok_min" min="1"
                                 placeholder="Input Stok Minimum" value="{{ $item->Detailsparepart->stok_min }}"></input>
                         </div>
                     </div>

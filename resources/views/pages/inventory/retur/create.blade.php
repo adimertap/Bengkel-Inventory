@@ -291,7 +291,7 @@
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="qty_retur">Masukan Quantity Retur</label><span class="mr-4 mb-3"
                         style="color: red">*</span>
-                        <input class="form-control" name="qty_retur" type="number" id="qty_retur"
+                        <input class="form-control" name="qty_retur" type="number" id="qty_retur" min="1"
                             placeholder="Input Quantity Retur" value="{{ $item->qty_retur }}"></input>
                     </div>
                     <div class="form-group">
@@ -475,7 +475,7 @@
         var qty_retur = form.find('input[name="qty_retur"]').val()
         var keterangan_retur = form.find('textarea[name="keterangan_retur"]').val()
 
-        if (qty_retur == 0 | qty_retur == '') {
+        if (qty_retur == 0 | qty_retur == '' | keterangan_retur == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
