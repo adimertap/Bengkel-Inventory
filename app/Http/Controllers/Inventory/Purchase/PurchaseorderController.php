@@ -26,7 +26,7 @@ class PurchaseorderController extends Controller
     {
         $po = PO::with([
             'Supplier','Pegawai'
-        ])->get();
+        ])->where('status_aktif','=','Aktif')->get();
 
         $pokirim = PO::where('status','=','Pending')->get();
         $pocount = PO::where('status','=','Pending')->where('approve_po','=','Approved')->where('approve_ap','=','Approved')->count();
@@ -73,7 +73,8 @@ class PurchaseorderController extends Controller
             'tanggal_po'=>$request->tanggal_po,
             'approve_po'=>'Pending',
             'approve_ap'=>'Pending',
-            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel,
+            'status_aktif' => 'Tidak Aktif'
            
         ]);
         
@@ -159,6 +160,7 @@ class PurchaseorderController extends Controller
             $po->grand_total = $temp;
             $po->approve_po = 'Pending';
             $po->approve_ap = 'Pending';
+            $po->status_aktif = 'Aktif';
           
             
             $po->update();
@@ -175,7 +177,7 @@ class PurchaseorderController extends Controller
     
             $po->grand_total = $temp;
           
-            
+            $po->status_aktif = 'Aktif';
             $po->update();
             $po->Detailsparepart()->sync($request->sparepart);
             return $request;
