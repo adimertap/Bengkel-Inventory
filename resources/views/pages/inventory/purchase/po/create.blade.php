@@ -364,7 +364,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" type="button"
+                <button class="btn btn-primary" type="button" data-dismiss="modal"
                     onclick="tambahsparepart(event,{{ $sparepart }},{{ $po->id_po }})">Ya Sudah!</button>
             </div>
         </div>
