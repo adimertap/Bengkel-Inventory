@@ -155,7 +155,6 @@ class RcvController extends Controller
         $qtyrcv = 0;
         $qtypo = 0;
 
-        
 
         foreach($request->sparepart as $key=>$item){
            
@@ -168,8 +167,6 @@ class RcvController extends Controller
                 $sparepart->id_gudang = $item['id_gudang'];
                 $sparepart->qty_stok = $item['qty_rcv'];
                 $sparepart->stok_min = $item['stok_min'];
-
-                // $post->slug  = $post->id . '-' . str_slug($post->title,'-');
 
                 $sparepart->slug = Str::slug(Auth::user()->bengkel->nama_bengkel . '-' . $sparepart->Sparepart->nama_sparepart);
                     if($sparepart->qty_stok >= $item['stok_min']){
@@ -224,12 +221,13 @@ class RcvController extends Controller
                 $kartu_gudang->jenis_kartu = 'Receiving';
                 $kartu_gudang->save();
             }
-        }
+        
         
             // DETAIL PO
             $detailpo = POdetail::where('id_po',$po->id_po)->where('id_sparepart',$item['id_sparepart'])->first();
             $detailpo->qty_po_sementara = $detailpo->qty_po_sementara - $item['qty_rcv'];
             $detailpo->save(); 
+       
 
             // KARTU GUDANG
             // $sp = Sparepart::get();
@@ -237,7 +235,7 @@ class RcvController extends Controller
             $temp = $temp + $item['total_harga'];
             $qtyrcv = $qtyrcv + $item['qty_rcv'];
             $qtypo = $qtypo + $item['qty_po'];
-        
+        }
         
         if($qtyrcv != $qtypo){
 
