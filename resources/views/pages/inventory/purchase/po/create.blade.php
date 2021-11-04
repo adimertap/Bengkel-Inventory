@@ -339,7 +339,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success" onclick="konfirmsparepart(event, {{ $item->id_sparepart }})"
-                        type="button" data-dismiss="modal">Tambah</button>
+                        type="button">Tambah</button>
                 </div>
             </form>
         </div>
