@@ -32,7 +32,7 @@ class RcvController extends Controller
     {
         $rcv = Rcv::with([
             'PO','Pegawai','Supplier'
-        ])->get();
+        ])->where('status_aktif', '=', 'Aktif')->get();
         
 
         $today = Carbon::now()->isoFormat('dddd');
@@ -71,7 +71,8 @@ class RcvController extends Controller
             'id_supplier'=>$id_supplier,
             'no_do'=>$request->no_do,
             'tanggal_rcv'=>$request->tanggal_rcv,
-            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel,
+            'status_aktif' => 'Tidak Aktif'
         ]);
         
         return $rcv;
@@ -243,6 +244,7 @@ class RcvController extends Controller
             $po->status ='Dikirim';
             $po->save();
 
+            $rcv->status_aktif = 'Aktif';
             $rcv->grand_total = $temp;
             $rcv->status_bayar = 'Pending';
             $rcv->status_invoice = 'Belum dibuat';
@@ -256,6 +258,7 @@ class RcvController extends Controller
             $po->status ='Diterima';
             $po->save();
 
+            $rcv->status_aktif = 'Aktif';
             $rcv->grand_total = $temp;
             $rcv->status_bayar = 'Pending';
             $rcv->status_invoice = 'Belum dibuat';
@@ -294,7 +297,6 @@ class RcvController extends Controller
 
     public function CetakRcv($id_rcv){
         $rcv = Rcv::with('PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi','PO.Detailsparepart')->findOrFail($id_rcv);
-        // return $pelayanan;
         $now = Carbon::now();
         return view('print.Inventory.cetakrcv', compact('rcv','now'));
     }
@@ -302,8 +304,6 @@ class RcvController extends Controller
     public function getrak($id)
     {
         $merk = Rak::where('id_gudang', '=', $id)->pluck('nama_rak', 'id_rak');
-        
-        // return $merk;
         return json_encode($merk);
     }
 }

@@ -365,11 +365,26 @@
         var _token = $('#form1').find('input[name="_token"]').val()
         var kode_po = $(data.find('.kode_po')[0]).text()
         var nama_supplier = $(data.find('.nama_supplier')[0]).text()
-        alert('Berhasil Menambahkan Data PO')
 
         $('#detailkodepo').val(kode_po)
         $('#detailsupplier').val(nama_supplier)
-        console.log(kode_po);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Berhasil Menambahkan Data Supplier'
+        })
+       
     }
 
     // FUNGSI TAMBAH AJAX
@@ -387,24 +402,45 @@
             tanggal_rcv: tanggal_rcv
         }
 
-        if (kode_po == 0 | kode_po == '') {
-            $('#alertkodepo').show()
-        } else if (no_do == 0 | no_do == '')
-            $('#alertdo').show()
-        else if (tanggal_rcv == 0 | tanggal_rcv == '')
-            $('#alerttanggal').show()
-
-        else {
+        if (kode_po == 0 | kode_po == '' | no_do == '' | no_do == 0 | tanggal_rcv == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terdapat Field Data Kosong!',
+            })
+        }else {
+            var sweet_loader =
+                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
 
             $.ajax({
                 method: 'post',
                 url: "/inventory/receiving",
                 data: data,
+                beforeSend: function () {
+                    swal.fire({
+                        title: 'Mohon Tunggu!',
+                        html: 'Data Sedang Diproses...',
+                        showConfirmButton: false,
+                        onRender: function () {
+                            // there will only ever be one sweet alert open.
+                            $('.swal2-content').prepend(sweet_loader);
+                        }
+                    });
+                },
                 success: function (response) {
+                    swal.fire({
+                        icon: 'success',
+                        showConfirmButton: false,
+                        html: '<h5>Success!</h5>'     
+                    });
                     window.location.href = '/inventory/receiving/' + response.id_rcv + '/edit'
                 },
                 error: function (error) {
                     console.log(error)
+                    swal.fire({
+                        icon: 'error',
+                        html: '<h5>Error!</h5>'
+                    });
                 }
 
             });
