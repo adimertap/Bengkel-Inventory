@@ -553,6 +553,9 @@
 
     }
 
+    $(document).ready(function () {
+        var table = $('#dataTableSupplier').DataTable()
+    });
 
     setInterval(displayclock, 500);
 

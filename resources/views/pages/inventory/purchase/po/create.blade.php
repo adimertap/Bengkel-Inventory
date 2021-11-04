@@ -231,14 +231,11 @@
                                                 style="width: 10px;">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id='konfirmasi'>
                                         @forelse ($po->Detailsparepart as $item)
                                         <tr id="gas-{{ $item->id_sparepart }}" role="row" class="odd">
-                                            {{-- <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
-                                            </th> --}}
                                             <td></td>
-                                            <td class="kode_sparepartedit"><span
-                                                    id="{{ $item->kode_sparepart }}">{{ $item->kode_sparepart }}</span>
+                                            <td class="kode_sparepartedit"><span id="{{ $item->id_sparepart }}">{{ $item->kode_sparepart }}</span>
                                             </td>
                                             <td class="nama_sparepartedit">{{ $item->nama_sparepart }}</td>
                                             <td class="merk_sparepartedit">{{ $item->Merksparepart->merk_sparepart }}
@@ -249,11 +246,6 @@
                                                 {{ number_format($item->pivot->harga_satuan,2,',','.')}}</td>
                                             <td class="total_hargaedit">Rp
                                                 {{ number_format($item->pivot->total_harga,2,',','.')}}</td>
-                                            {{-- <td class="harga_beli">@if ($item->Hargasparepart == '' | $item->Hargasparepart == '0')
-                                                <span class="text-center">Tidak ada Harga</span> 
-                                            @else Rp.{{ number_format($item->Hargasparepart->harga_beli,2,',','.') }}
-                                            @endif
-                                            </td> --}}
                                             <td>
 
                                             </td>
@@ -402,27 +394,43 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
-        for (var i = 0; i < sparepart.length; i++) {
-            var form = $('#form-' + sparepart[i].id_sparepart)
-            var qty = form.find('input[name="qty"]').val()
-            var harga_satuan = form.find('input[name="harga_diterima"]').val()
-            var id_bengkel = $('#id_bengkel').text()
-            var total_harga = qty * harga_satuan
+        var datasparepart = $('#konfirmasi').children()
+        for (let index = 0; index < datasparepart.length; index++) {
+            var children = $(datasparepart[index]).children()
 
-            if (qty == 0 | qty == '') {
-                continue
-            } else {
-                var id_sparepart = sparepart[i].id_sparepart
-                var obj = {
-                    id_sparepart: id_sparepart,
-                    qty: qty,
-                    qty_po_sementara: qty,
-                    total_harga: total_harga,
-                    harga_satuan: harga_satuan
-                }
-                dataform2.push(obj)
+            // Validasi Table Kosong
+            var validasichildren = children.children()
+
+            // ID SPAREPART
+            var td = children[1]
+            var span = $(td).children()[0]
+            var id_sparepart = $(span).attr('id')
+
+            // JUMLAH REAL
+            var tdqty = children[5]
+            var qty = $(tdqty).html()
+
+             // satuan
+            var tdharga = children[6]
+            var harga_satuan= $(tdharga).html()
+
+            // Harga Beli
+            var tdtotal_harga = children[7]
+            var total_harga = $(tdtotal_harga).html()
+
+            console.log(id_sparepart, qty, harga_satuan, total_harga)
+
+            var obj = {
+                id_sparepart: id_sparepart,
+                qty: qty,
+                qty_po_sementara: qty,
+                total_harga: total_harga,
+                harga_satuan: harga_satuan
             }
+            dataform2.push(obj)
+            // console.log(obj)
         }
+
 
         if (dataform2.length == 0) {
             Swal.fire({
@@ -465,7 +473,7 @@
                         'Success!',
                         'Redirect to List Data!',
                         )
-                    window.location.href = '/inventory/purchase-order'
+                    // window.location.href = '/inventory/purchase-order'
 
                 },
                 error: function (response) {
@@ -515,7 +523,7 @@
             table.row(row).remove().draw();
 
             $('#dataTableKonfirmasi').DataTable().row.add([
-                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
+                kode_sparepart, `<span id=${id_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
          

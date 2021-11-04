@@ -402,13 +402,7 @@
     }
 
     $(document).ready(function () {
-        var table = $('#dataTableSupplier').DataTable({
-            "pageLength": 5,
-            "lengthMenu": [
-                [5, 10, 20, -1],
-                [5, 10, 20, ]
-            ]
-        })
+        var table = $('#dataTableSupplier').DataTable()
     });
 
     setInterval(displayclock, 500);
