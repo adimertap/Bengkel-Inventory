@@ -293,7 +293,7 @@
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="qty">Masukan Quantity Pesanan</label> <span
                             class="mr-4 mb-3" style="color: red">*</span>
-                        <input class="form-control" name="qty" type="text" id="qty" placeholder="Input Jumlah Pesanan"
+                        <input class="form-control" name="qty" type="number" id="qty" placeholder="Input Jumlah Pesanan"
                             value="{{ $item->qty }}"></input>
                     </div>
 
