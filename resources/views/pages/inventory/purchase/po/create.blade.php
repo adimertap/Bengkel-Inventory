@@ -519,7 +519,9 @@
                 merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
 
-            $(`#Modaltambah-${id_sparepart}`).hide()
+            var tes = $(`#Modaltambah-${id_sparepart}`).children().children().children()
+
+            console.log(tes)
 
             const Toast = Swal.mixin({
                 toast: true,
