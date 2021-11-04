@@ -303,7 +303,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-success"
                         onclick="konfirmsparepart(event,{{ $item->sparepart->id_sparepart }})" type="button"
-                        data-dismiss="modal">Tambah</button>
+                        >Tambah</button>
                 </div>
             </form>
         </div>
