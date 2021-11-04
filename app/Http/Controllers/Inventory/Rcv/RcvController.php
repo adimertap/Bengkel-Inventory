@@ -35,7 +35,7 @@ class RcvController extends Controller
         ])->where('status_aktif', '=', 'Aktif')->get();
         
 
-        // $today = Carbon::now()->isoFormat('dddd');
+        $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
         $po = PO::where([['status', '=', 'Dikirim']])->get();
