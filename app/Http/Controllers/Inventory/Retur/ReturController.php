@@ -27,7 +27,7 @@ class ReturController extends Controller
     {
         $retur = Retur::with([
             'Rcv.Detailrcv','Pegawai','Supplier'
-        ])->get();
+        ])->where('status','=','Aktif')->get();
 
         $supplier = Supplier::all();
 
@@ -61,7 +61,8 @@ class ReturController extends Controller
         $retur = Retur::create([
             'id_supplier'=>$id_supplier,
             'tanggal_retur'=>$request->tanggal_retur,
-            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel
+            'id_bengkel' => $request['id_bengkel'] = Auth::user()->id_bengkel,
+            'status' => 'Tidak Aktif'
         ]);
         
         return $retur;
