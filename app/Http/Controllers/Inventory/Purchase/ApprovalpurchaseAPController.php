@@ -18,7 +18,7 @@ class ApprovalpurchaseAPController extends Controller
     {
         $po = PO::with([
             'Supplier','Pegawai'
-        ])->get();
+        ])->where('status_aktif','=', 'Aktif')->get();
 
         return view('pages.inventory.purchase.approvalpoap.approvalpoap', compact('po'));
     }

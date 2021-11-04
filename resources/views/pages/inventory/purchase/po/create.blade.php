@@ -375,11 +375,11 @@
 @endforelse
 
 <template id="template_delete_button">
-    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
-        <i class="fas fa-trash"></i>
-    </button>
     <button class="btn btn-primary btn-datatable" onclick="editsparepart(this)" type="button">
         <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-danger btn-datatable" onclick="hapussparepart(this)" type="button">
+        <i class="fas fa-trash"></i>
     </button>
 </template>
 
@@ -431,6 +431,9 @@
                 text: 'Anda Belum Memilih Sparepart!',
             })
         } else {
+            var sweet_loader =
+                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+
             var data = {
                 _token: _token,
                 kode_po: kode_po,
@@ -441,9 +444,6 @@
                 approve_ap: approve_ap,
                 sparepart: dataform2
             }
-            console.log(data)
-            var sweet_loader =
-                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
 
             $.ajax({
                 method: 'put',
@@ -493,7 +493,7 @@
             currency: 'IDR'
         }).format(qty * harga_satuan)
 
-        if (qty == 0 | qty == '' | harga_diterima == '' | harga_diterima == 0) {
+        if (qty == 0 | qty == '' | harga_satuan == '' | harga_satuan == 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -555,11 +555,6 @@
                 var row = $(element).parent().parent()
                 table.row(row).remove().draw();
                 var table = $('#dataTable').DataTable()
-                Swal.fire(
-                    'Deleted!',
-                    'Data Sparepart Telah Terhapus.',
-                    'success'
-                )
             }
         })
 
