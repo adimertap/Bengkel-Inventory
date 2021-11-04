@@ -282,7 +282,7 @@
         <div class="modal-content">
             <div class="modal-header bg-primary-soft">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Jumlah Pesanan</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close" id="buttonclose-{{ $item->id_sparepart }}"><span
                         aria-hidden="true">×</span></button>
             </div>
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
@@ -518,10 +518,10 @@
                 kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
+         
+             $(`#buttonclose-${id_sparepart}`).click()
 
-            var tes = $(`#Modaltambah-${id_sparepart}`).children().children().children()
-
-            console.log(tes)
+       
 
             const Toast = Swal.mixin({
                 toast: true,
