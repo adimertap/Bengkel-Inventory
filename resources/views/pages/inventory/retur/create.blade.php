@@ -245,12 +245,9 @@
                                         @forelse ($retur->Detailretur as $sparepart)
                                         <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
                                             <td></td>
-                                            <td class="kode_sparepartedit"><span
-                                                    id="{{ $sparepart->id_sparepart }}">{{ $sparepart->kode_sparepart }}</span>
-                                            </td>
-                                            <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
-                                            <td class="merk_sparepartedit">
-                                                {{ $sparepart->Merksparepart->merk_sparepart }}</td>
+                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepartedit"><span id="{{ $sparepart->id_sparepart }}">{{ $sparepart->nama_sparepart }}</span></td>
+                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td class="satuan_edit">{{ $sparepart->Konversi->satuan }}</td>
                                             <td class="qty_retur_edit">{{ $sparepart->pivot->qty_retur }}</td>
                                             <td class="keterangan_retur_edit">{{ $sparepart->pivot->keterangan_retur }}
@@ -374,7 +371,7 @@
             var validasichildren = children.children()
 
             // ID SPAREPART
-            var td = children[1]
+            var td = children[2]
             var span = $(td).children()[0]
             var id_sparepart = $(span).attr('id')
 
@@ -504,7 +501,7 @@
             table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                nama_sparepart, `<span id=${id_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
+                nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, `<span id=${id_sparepart}>${nama_sparepart}</span>`,
                 merk_sparepart, satuan, qty_retur, keterangan_retur
             ]).draw();
 
