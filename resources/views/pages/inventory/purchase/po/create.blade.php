@@ -523,7 +523,7 @@
             //Delete Data di Table Konfirmasi sebelum di add
             var table = $('#dataTableKonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
-            var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
+            var row = $(`#${$.escapeSelector(id_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 
             $('#dataTableKonfirmasi').DataTable().row.add([
