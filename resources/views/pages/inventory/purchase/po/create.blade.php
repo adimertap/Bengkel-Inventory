@@ -422,7 +422,6 @@
             var total_harga = total_harga_tes.replace('Rp', '').replace('&nbsp;', '')
                 .replace('.', '').replace('.', '').replace(',00', '').trim()
 
-            console.log(id_sparepart, qty, harga_satuan, total_harga, harga_satuan_tes, total_harga_tes)
 
             var obj = {
                 id_sparepart: id_sparepart,

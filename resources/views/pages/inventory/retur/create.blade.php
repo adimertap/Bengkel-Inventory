@@ -246,7 +246,7 @@
                                         <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
                                             <td></td>
                                             <td class="kode_sparepartedit"><span
-                                                    id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span>
+                                                    id="{{ $sparepart->id_sparepart }}">{{ $sparepart->kode_sparepart }}</span>
                                             </td>
                                             <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
                                             <td class="merk_sparepartedit">
@@ -366,23 +366,33 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
-        for (var i = 0; i < sparepart.length; i++) {
-            var form = $('#form-' + sparepart[i].id_sparepart)
-            var qty_retur = form.find('input[name="qty_retur"]').val()
-            var keterangan_retur = form.find('textarea[name="keterangan_retur"]').val()
+        var datasparepart = $('#konfirmasi').children()
+        for (let index = 0; index < datasparepart.length; index++) {
+            var children = $(datasparepart[index]).children()
 
-            if (qty_retur == 0 | qty_retur == '') {
-                continue
-            } else {
-                var id_sparepart = sparepart[i].id_sparepart
-                var obj = {
-                    id_sparepart: id_sparepart,
-                    id_retur: id_retur,
-                    qty_retur: qty_retur,
-                    keterangan_retur: keterangan_retur,
-                }
-                dataform2.push(obj)
+            // Validasi Table Kosong
+            var validasichildren = children.children()
+
+            // ID SPAREPART
+            var td = children[1]
+            var span = $(td).children()[0]
+            var id_sparepart = $(span).attr('id')
+
+            // JUMLAH REAL
+            var tdqty = children[5]
+            var qty_retur = $(tdqty).html()
+
+            var tdketerangan = children[6]
+            var keterangan_retur = $(tdketerangan).html()
+
+            var obj = {
+                id_sparepart: id_sparepart,
+                id_retur: id_retur,
+                qty_retur: qty_retur,
+                keterangan_retur: keterangan_retur,
             }
+            dataform2.push(obj)
+            // console.log(obj)
         }
 
         if (dataform2.length == 0) {
@@ -494,7 +504,7 @@
             table.row(row).remove().draw();
 
             $('#dataTablekonfirmasi').DataTable().row.add([
-                nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
+                nama_sparepart, `<span id=${id_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
                 merk_sparepart, satuan, qty_retur, keterangan_retur
             ]).draw();
 
