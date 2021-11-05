@@ -343,7 +343,6 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
-
         var datasparepart = $('#konfirmasi').children()
         for (let index = 0; index < datasparepart.length; index++) {
             var children = $(datasparepart[index]).children()
@@ -380,34 +379,16 @@
             dataform2.push(obj)
         }
 
-        // for (var i = 0; i < sparepart.length; i++) {
-        //     var form = $('#item-' + sparepart[i].id_sparepart)
-        //     // console.log(form)
-        //     var jumlah_real = form.find('input[name="jumlah_real"]').val()
-        //     var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
-        //     var id_bengkel = $('#id_bengkel').text()
-
-        //     if (jumlah_real == 0 | jumlah_real == '') {
-        //         continue
-        //     } else {
-        //         var id_sparepart = sparepart[i].id_sparepart
-        //         console.log(id_sparepart)
-        //         var obj = {
-        //             id_opname: idbaru,
-        //             id_sparepart: id_sparepart,
-        //             id_bengkel: id_bengkel,
-        //             jumlah_real: jumlah_real,
-        //             keterangan_detail: keterangan_detail
-        //         }
-        //         dataform2.push(obj)
-        //     }
-        // }
-
         if (validasichildren[0] == undefined) {
-            $('#alertsparepartkosong').show()
-        } else if (tanggal_opname == 0 | tanggal_opname == '')
-            $('#alerttanggal').show()
-        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Anda Belum Memilih Sparepart!',
+            })
+        }else {
+            var sweet_loader =
+                '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+
             var data = {
                 _token: _token,
                 kode_opname: kode_opname,
@@ -415,36 +396,54 @@
                 tanggal_opname: tanggal_opname,
                 sparepart: dataform2
             }
-            console.log(data)
+          
 
             $.ajax({
                 method: 'put',
                 url: '/inventory/Opname/' + id_opname,
-                // url: '/inventory/purchase-order/' + id_po,
                 data: data,
+                beforeSend: function () {
+                    swal.fire({
+                        title: 'Mohon Tunggu!',
+                        html: 'Data Opname Sedang Diproses...',
+                        showConfirmButton: false,
+                        onRender: function () {
+                            // there will only ever be one sweet alert open.
+                            $('.swal2-content').prepend(sweet_loader);
+                        }
+                    });
+                },
                 success: function (response) {
+                    swal.fire({
+                        icon: 'success',
+                        showConfirmButton: false,
+                        html: '<h5>Success!</h5>'
+                    });
                     window.location.href = '/inventory/Opname'
                 },
                 error: function (response) {
                     console.log(response)
+                    swal.fire({
+                        icon: 'error',
+                        html: '<h5>Error!</h5>'
+                    });
                 }
             });
         }
     }
 
     function konfirmsparepart(event, id_sparepart) {
-        // var form = $('#item-' + id_sparepart)
-        // var jumlah_real = form.find('input[name="jumlah_real"]').val()
-        // var keterangan_detail = form.find('input[name="keterangan_detail"]').val()
-
         var jumlah_real = $(`#stock-real-${id_sparepart}`).val()
         var keterangan_detail = $(`#keterangan-${id_sparepart}`).val()
         var selisih = $(`#selisih-${id_sparepart}`).val()
 
         if (jumlah_real == 0 | jumlah_real == '') {
-            alert('Quantity Kosong')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Terdapat Field Data Kosong!',
+            })
         } else {
-            alert('Berhasil Menambahkan Sparepart')
             var data = $('#item-' + id_sparepart)
             var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
@@ -461,17 +460,45 @@
                 merk_sparepart, satuan,
                 jumlah_real, selisih, keterangan_detail
             ]).draw();
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Menambahkan Data Sparepart'
+            })
         }
     }
 
     function hapussparepart(element) {
-        var table = $('#dataTablekonfirmasi').DataTable()
-        // Akses Parent Sampai <tr></tr>
-        var row = $(element).parent().parent()
-        table.row(row).remove().draw();
-        alert('Data Sparepart Berhasil di Hapus')
-        // draw() Reset Ulang Table
-        var table = $('#dataTable').DataTable()
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var table = $('#dataTablekonfirmasi').DataTable()
+                // Akses Parent Sampai <tr></tr>
+                var row = $(element).parent().parent()
+                table.row(row).remove().draw();
+                // draw() Reset Ulang Table
+                var table = $('#dataTable').DataTable()
+            }
+        })
     }
 
     $(document).ready(function () {
