@@ -478,7 +478,7 @@
                         showConfirmButton: false,
                         html: '<h5>Success!</h5>'
                     });
-                    // window.location.href = '/inventory/purchase-order'
+                    window.location.href = '/inventory/purchase-order'
 
                 },
                 error: function (response) {
