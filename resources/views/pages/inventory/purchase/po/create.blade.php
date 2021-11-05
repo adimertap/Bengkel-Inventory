@@ -235,9 +235,9 @@
                                         @forelse ($po->Detailsparepart as $item)
                                         <tr id="gas-{{ $item->id_sparepart }}" role="row" class="odd">
                                             <td></td>
-                                            <td class="kode_sparepartedit"><span id="{{ $item->id_sparepart }}">{{ $item->kode_sparepart }}</span>
+                                            <td class="kode_sparepartedit"><span id="{{ $item->kode_sparepart }}">{{ $item->kode_sparepart }}</span>
                                             </td>
-                                            <td class="nama_sparepartedit">{{ $item->nama_sparepart }}</td>
+                                            <td class="nama_sparepartedit"><span id="{{ $item->id_sparepart }}">{{ $item->nama_sparepart }}</span></td>
                                             <td class="merk_sparepartedit">{{ $item->Merksparepart->merk_sparepart }}
                                             </td>
                                             <td class="kemasanedit">{{ $item->Kemasan->nama_kemasan }}</td>
@@ -402,7 +402,7 @@
             var validasichildren = children.children()
 
             // ID SPAREPART
-            var td = children[1]
+            var td = children[2]
             var span = $(td).children()[0]
             var id_sparepart = $(span).attr('id')
 
@@ -523,11 +523,11 @@
             //Delete Data di Table Konfirmasi sebelum di add
             var table = $('#dataTableKonfirmasi').DataTable()
             // Akses Parent Sampai <tr></tr> berdasarkan id kode sparepart
-            var row = $(`#${$.escapeSelector(id_sparepart.trim())}`).parent().parent()
+            var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
             table.row(row).remove().draw();
 
             $('#dataTableKonfirmasi').DataTable().row.add([
-                kode_sparepart, `<span id=${id_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
+                kode_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, `<span id=${id_sparepart}>${nama_sparepart}</span>`,
                 merk_sparepart, kemasan, qty, harga_fix, total_harga,
             ]).draw();
          
