@@ -129,6 +129,8 @@ class RcvController extends Controller
                };
             }
         }
+
+        return $rcv;
         
 
         return view('pages.inventory.rcv.create', compact('rcv','kode_rcv','rak','gudang'));

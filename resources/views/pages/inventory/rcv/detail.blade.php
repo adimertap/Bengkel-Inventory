@@ -136,19 +136,10 @@
                                                 <td>{{ $detail->pivot->qty_po }}</td>
                                                 <td>{{ $detail->pivot->qty_rcv }}</td>
                                                 <td>Rp.{{ number_format($detail->pivot->harga_diterima,2,',','.')}}</td>
-                                                <td>{{ $detail->pivot->keterangan }}</td>
-                                                {{-- <td>{{ $detail->qty_rcv }}</td>
-                                                <td>Rp.
-                                                    {{ number_format($detail->Sparepart->Hargasparepart->harga_beli,0,',','.') }}
-                                                </td>
-                                                <td>{{ $detail->Sparepart->Rak->nama_rak }}</td> --}}
+                                                <td>Rp.{{ number_format($detail->pivot->total_harga,2,',','.')}}</td>
                                             </tr>
                                             @empty
-                                            <tr>
-                                                <td colspan="7" class="tex-center">
-                                                    Data Sparepart Kosong
-                                                </td>
-                                            </tr>
+                                           
                                             @endforelse
                                         </tbody>
                                     </table>

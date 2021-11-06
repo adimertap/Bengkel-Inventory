@@ -524,36 +524,6 @@
 
         }
 
-
-        // for (var i = 0; i < sparepart.length; i++) {
-        //     var form = $('#form-' + sparepart[i].id_sparepart)
-        //     var qty_po = $($('#item-' + sparepart[i].id_sparepart).find('.qty')[0]).html()
-        //     var qty_rcv = form.find('input[name="qty_rcv"]').val()
-        //     var keterangan = form.find('textarea[name="keterangan"]').val()
-        //     var harga_diterima = form.find('input[name="harga_diterima"]').val()
-        //     var total_harga = qty_rcv * harga_diterima
-        //     var id_gudang = form.find('select[name=id_gudang]').val()
-        //     var stok_min = form.find('input[name=stok_min]').val()
-
-        //     if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '') {
-        //         continue
-        //     } else {
-        //         var id_sparepart = sparepart[i].id_sparepart
-        //         var obj = {
-        //             id_sparepart: id_sparepart,
-        //             id_rcv: id_rcv,
-        //             qty_rcv: qty_rcv,
-        //             qty_po: qty_po,
-        //             keterangan: keterangan,
-        //             harga_diterima: harga_diterima,
-        //             total_harga: total_harga,
-        //             id_gudang: id_gudang,
-        //             stok_min: stok_min
-        //         }
-        //         dataform2.push(obj)
-        //     }
-        // }
-
         if (dataform2.length == 0) {
             Swal.fire({
                 icon: 'error',
