@@ -277,6 +277,8 @@
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
                                             <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
+                                            <td class="nama_gudangedit"><span id="{{ $sparepart->gudang->id_gudang }}">{{ $sparepart->gudang->nama_gudang }}</span></td>
+                                            <td class="stok_minedit">{{ $sparepart->stok_min }}</td>
                                             <td></td>
                                         </tr>
                                         @empty
