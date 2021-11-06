@@ -119,7 +119,7 @@
                                                 style="width: 60px;">Kartu Gudang</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 60px;">Detail</th>
+                                                style="width: 80px;">Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -167,7 +167,7 @@
                                                     data-original-title="Detail Sparepart dan Foto">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning" type="button"
+                                                <a href="" class="btn btn-warning btn-xs" type="button"
                                                     data-toggle="modal" data-target="#Modalmutasi-{{ $item->id_detail_sparepart }}">
                                                     Mutasi
                                                 </a>
