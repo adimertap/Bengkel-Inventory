@@ -167,6 +167,10 @@
                                                     data-original-title="Detail Sparepart dan Foto">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
+                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                    data-toggle="modal" data-target="#Modalmutasi-{{ $item->id_detail_sparepart }}">
+                                                    Mutasi
+                                                </a>
                                             </td>
                                         </tr>
                                         @empty
@@ -182,6 +186,33 @@
         </div>
     </div>
 </main>
+
+
+@forelse ($sparepart as $item)
+<div class="modal fade" id="Modalmutasi-{{ $item->id_detail_sparepart }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger-soft">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Mutasi Sparepart</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('Rcv.destroy', $item->id_detail_sparepart) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="modal-body text-center"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@empty
+
+@endforelse
 
 @if (count($errors) > 0)
 <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
