@@ -272,12 +272,11 @@
                                             <td></td>
                                             <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
                                             <td class="nama_sparepartedit"><span id="{{ $sparepart->id_sparepart }}">{{ $sparepart->nama_sparepart }}</span></td>
-                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td class="qtypoedit">{{ $sparepart->pivot->qty_po }}</td>
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
                                             <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
-                                            <td class="nama_gudangedit"><span id="{{ $sparepart->pivot->id_gudang }}">{{ $sparepart->pivot->nama_gudang }}</span></td>
+                                            <td class="nama_gudangedit"><span id="{{ $sparepart->pivot->id_gudang }}">{{ $sparepart->pivot->gudang->nama_gudang }}</span></td>
                                             <td class="stok_minedit">{{ $sparepart->pivot->stok_min }}</td>
                                             <td></td>
                                         </tr>
