@@ -115,6 +115,13 @@ class KartugudangController extends Controller
         //
     }
 
+    public function getrak($id_gudang)
+    {
+        $merk = Rak::where('id_gudang', '=', $id_gudang)->pluck('nama_rak', 'id_rak');
+        // return $merk;
+        return json_encode($merk);
+    }
+
     public function CetakKartu($id_detail_sparepart){
         $sparepart = DetailSparepart::with('Sparepart','Sparepart.Jenissparepart','Sparepart.Merksparepart')->findOrFail($id_detail_sparepart);
         $kartu_gudang = Kartugudang::with('Sparepart','Sparepart.Sparepart')->where('id_detail_sparepart', $id_detail_sparepart)->get();

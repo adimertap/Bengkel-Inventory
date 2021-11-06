@@ -133,7 +133,7 @@ Route::group(
                 Route::resource('Detailsparepart', 'DetailSparepartController');
                 Route::get('Detailsparepart/{id_detail_sparepart}/gallery', 'DetailSparepartController@gallery')
                     ->name('Detailsparepart-gallery');
-                Route::get('Detailsparepart/getrak/{id_gudang}', 'DetailSparepartController@getrak');
+               
             });
 
 
@@ -231,6 +231,7 @@ Route::group(
 
                 Route::resource('Kartu-gudang', 'KartugudangController');
                 Route::get('cetak-kartu-gudang/{id}', 'KartugudangController@CetakKartu')->name('cetak-kartu-gudang');
+                Route::get('Kartu-gudang/getrak/{id_gudang}', 'KartugudangController@getrak');
             });
     }
 );
