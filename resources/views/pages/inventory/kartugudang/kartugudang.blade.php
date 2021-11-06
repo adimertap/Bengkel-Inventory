@@ -168,7 +168,8 @@
                                                     <i class="fa fa-eye"></i>
                                                 </a>
                                                 <a href="" class="btn btn-light btn-xs" type="button"
-                                                    data-toggle="modal" data-target="#Modalmutasi-{{ $item->id_detail_sparepart }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modalmutasi-{{ $item->id_detail_sparepart }}">
                                                     Mutasi
                                                 </a>
                                             </td>
@@ -198,31 +199,32 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('Detailsparepart.update', $item->id_detail_sparepart) }}" method="POST" class="d-inline">
+            <form action="{{ route('Detailsparepart.update', $item->id_detail_sparepart) }}" method="POST"
+                class="d-inline">
                 @csrf
                 <div class="modal-body">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3" style="color: red">*</span>
-                            <select class="form-control" name="id_gudang" id="id_gudang" class="form-control" required>
-                                <option value="" holder>Pilih Jenis</option>
-                                @foreach ($gudang as $items)
-                                <option value="{{ $items->id_gudang }}">
-                                    {{ $items->nama_gudang }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span
-                                class="mr-4 mb-3" style="color: red">*</span>
-                            <select class="form-control" name="id_rak" id="id_rak" class="form-control">
-                                <option value="" holder>Pilih Rak</option>
-                            </select>
-                            <span class="small" style="font-size: 13px"
-                                style="color: rgb(117, 114, 114)">(Pilih jenis sparepart terlebih
-                                dahulu)</span>
-                        </div>
+                    <h6>Mutasi Penempatan Sparepart</h6>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select class="form-control" name="id_gudang" id="id_gudang" class="form-control" required>
+                            <option value="" holder>Pilih Jenis</option>
+                            @foreach ($gudang as $items)
+                            <option value="{{ $items->id_gudang }}">
+                                {{ $items->nama_gudang }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select class="form-control" name="id_rak" id="id_rak" class="form-control">
+                            <option value="" holder>Pilih Rak</option>
+                        </select>
+                        <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih jenis
+                            sparepart terlebih
+                            dahulu)</span>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -244,9 +246,6 @@
 
 {{-- Script Open Modal Callback --}}
 <script>
-
-
-
     $(document).ready(function () {
         $('#validasierror').click();
 
