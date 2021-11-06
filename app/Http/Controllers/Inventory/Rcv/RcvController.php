@@ -102,11 +102,10 @@ class RcvController extends Controller
     public function edit($id)
     {
         $rcv = Rcv::with([
-            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart','PO.Detailsparepart.Konversi',
-            'PO.Detailsparepart','PO.Detailsparepart.Detailsparepart','Detailrcv'
+            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart',
+            'PO.Detailsparepart.Konversi','PO.Detailsparepart',
+            'PO.Detailsparepart.Detailsparepart','Detailrcv'
         ])->find($id);
-
-        // return $rcv->PO;
 
         $id = Rcv::getId();
         foreach($id as $value);
@@ -129,8 +128,6 @@ class RcvController extends Controller
                };
             }
         }
-
-        return $rcv;
         
 
         return view('pages.inventory.rcv.create', compact('rcv','kode_rcv','rak','gudang'));
