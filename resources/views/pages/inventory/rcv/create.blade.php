@@ -238,19 +238,11 @@
                                                 Sparepart</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 70px;">
-                                                Merk</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 70px;">
-                                                Kemasan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Start date: activate to sort column ascending"
-                                                style="width: 70px;">
+                                                style="width: 40px;">
                                                 Jumlah PO</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
-                                                style="width: 80px;">
+                                                style="width: 40px;">
                                                 Jumlah Rcv</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
@@ -260,7 +252,14 @@
                                                 colspan="1" aria-label="Salary: activate to sort column ascending"
                                                 style="width: 80px;">
                                                 Keterangan</th>
-
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 80px;">
+                                                Gudang</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Salary: activate to sort column ascending"
+                                                style="width: 40px;">
+                                                Stok Min</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 60px;">
@@ -271,17 +270,12 @@
                                         @forelse ($rcv->Detailrcv as $sparepart )
                                         <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
                                             <td></td>
-                                            <td class="kode_sparepartedit"><span
-                                                    id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span>
-                                            </td>
-                                            <td class="nama_sparepartedit">{{ $sparepart->nama_sparepart }}</td>
-                                            <td class="merk_sparepartedit">
-                                                {{ $sparepart->Merksparepart->merk_sparepart }}</td>
-                                            <td class="kemasan_edit">{{ $sparepart->Kemasan->nama_kemasan }}</td>
+                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
+                                            <td class="nama_sparepartedit"><span id="{{ $sparepart->id_sparepart }}">{{ $sparepart->nama_sparepart }}</span></td>
+                                            <td class="merk_sparepartedit">{{ $sparepart->Merksparepart->merk_sparepart }}</td>
                                             <td class="qtypoedit">{{ $sparepart->pivot->qty_po }}</td>
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
-                                            <td class="total_hargaedit">Rp
-                                                {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
+                                            <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
                                             <td></td>
                                         </tr>
@@ -476,6 +470,8 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
+
+
         for (var i = 0; i < sparepart.length; i++) {
             var form = $('#form-' + sparepart[i].id_sparepart)
             var qty_po = $($('#item-' + sparepart[i].id_sparepart).find('.qty')[0]).html()
@@ -568,6 +564,9 @@
         }).format(harga_diterima)
         var keterangan = form.find('textarea[name="keterangan"]').val()
         var id_gudang = form.find('select[name=id_gudang]').val()
+        var id_gudang2 = form.find('select[name=id_gudang]').text()
+        console.log(id_gudang, id_gudang2)
+
         var stok_min = form.find('input[name=stok_min]').val()
 
         if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '' | id_gudang ==
@@ -597,14 +596,15 @@
                 var satuan = $(data.find('.satuan')[0]).text()
                 var qty = $(data.find('.qty')[0]).text()
                 var harga_beli = $(data.find('.harga_beli')[0]).text()
+
+
                 var template = $($('#template_delete_button').html())
                 var table = $('#dataTablekonfirmasi').DataTable()
                 var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
                 table.row(row).remove().draw();
 
                 $('#dataTablekonfirmasi').DataTable().row.add([
-                    nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, nama_sparepart,
-                    merk_sparepart, satuan,
+                    nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, `<span id=${id_sparepart}>${nama_sparepart}</span>`,
                     qty, qty_rcv, harga_diterima_fix, keterangan
                 ]).draw();
 
