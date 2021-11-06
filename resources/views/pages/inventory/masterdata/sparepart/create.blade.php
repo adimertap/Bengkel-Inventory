@@ -382,19 +382,19 @@
     $(document).ready(function () {
         $('#validasierror').click();
 
-        $('select[name="id_jenis_sparepart"]').on('change', function () {
-            var id_jenis_sparepart = $(this).val();
-            if (id_jenis_sparepart) {
+        $('select[name="id_gudang"]').on('change', function () {
+            var id_gudang = $(this).val();
+            if (id_gudang) {
                 $.ajax({
-                    url: 'getmerk/' + id_jenis_sparepart,
+                    url: 'getrak/' + id_gudang,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
-                        $('select[name="id_merk"]').empty();
-                        $('select[name="id_merk"]').append(
-                            '<option value="" holder>Pilih Merk</option>')
+                        $('select[name="id_rak"]').empty();
+                        $('select[name="id_rak"]').append(
+                            '<option value="" holder>Pilih Rak</option>')
                         $.each(data, function (key, value) {
-                            $('select[name="id_merk"]').append(
+                            $('select[name="id_rak"]').append(
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
@@ -404,7 +404,7 @@
                     }
                 });
             } else {
-                $('select[name="id_merk"]').empty();
+                $('select[name="id_rak"]').empty();
             }
         });
     });

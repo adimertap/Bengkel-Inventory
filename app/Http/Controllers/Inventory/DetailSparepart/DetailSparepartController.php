@@ -8,6 +8,7 @@ use App\Model\Inventory\DetailSparepart\DetailSparepart as DetailSparepartDetail
 use App\Model\Inventory\Kelolastock\DetailSparepart;
 use App\Model\Inventory\Gallery;
 use App\Model\Inventory\Kelolastock\Stock;
+use App\Model\Inventory\Rak;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -88,6 +89,13 @@ class DetailSparepartController extends Controller
         $detail->update();
 
         return redirect()->back()->with('messageberhasil','Mutasi Berhasil Dilakukan');
+    }
+
+    public function getrak($id)
+    {
+        $merk = Rak::where('id_gudang', '=', $id)->pluck('nama_rak', 'id_rak');
+        // return $merk;
+        return json_encode($merk);
     }
 
     /**
