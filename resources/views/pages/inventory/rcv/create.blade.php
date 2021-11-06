@@ -339,7 +339,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label class="small mb-1" for="harga_diterima">Harga diterima</label>
-                            <input class="form-control harga_diterima" name="harga_diterima" type="number" 
+                            <input class="form-control harga_diterima" name="harga_diterima" type="number" min="1000"
                                 placeholder="Input Harga Beli diterima" value="{{ $item->pivot->harga_satuan }}">
                             </input>
                             <div class="small text-primary">Harga (IDR):

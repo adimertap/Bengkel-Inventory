@@ -307,8 +307,8 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" type="button"
-                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $opname->id_opname}})" data-dismiss="modal">Ya Sudah!</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal"
+                    onclick="tambahsparepart(event,{{ $sparepart }},{{ $opname->id_opname}})" >Ya Sudah!</button>
             </div>
         </div>
     </div>
@@ -441,7 +441,7 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Terdapat Field Data Kosong!',
+                text: 'Field Qty Kosong!',
             })
         } else {
             var data = $('#item-' + id_sparepart)
