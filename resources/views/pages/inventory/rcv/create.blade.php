@@ -484,7 +484,8 @@
             var span = $(td).children()[0]
             var id_sparepart = $(span).attr('id')
 
-            var qty_po = children[3].html()
+            var tdqty_po = children[3]
+            var qty_po = $(tdqty_po).html()
 
             var tdqty_rcv = children[4]
             var qty_rcv = $(tdqty_rcv).html()
