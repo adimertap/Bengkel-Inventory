@@ -124,6 +124,7 @@ class RcvController extends Controller
                 $rcv->PO->Detailsparepart[$j]->harga_diterima = $rcv->Detailrcv[$i]->pivot->harga_diterima;
                 $rcv->PO->Detailsparepart[$j]->keterangan = $rcv->Detailrcv[$i]->pivot->keterangan;
                 $rcv->PO->Detailsparepart[$j]->id_gudang = $rcv->Detailrcv[$i]->pivot->id_gudang;
+                $rcv->PO->Detailsparepart[$j]->nama_gudang = $rcv->Detailrcv[$i]->pivot->nama_gudang;
                 $rcv->PO->Detailsparepart[$j]->id_rak = $rcv->Detailrcv[$i]->pivot->id_rak;
                };
             }

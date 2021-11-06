@@ -503,6 +503,9 @@
             var span = $(td).children()[0]
             var id_gudang = $(span).attr('id')
 
+            var tdnamagudang = children[6]
+            var nama_gudang = $(tdnamagudang).html()
+
             var tdstok_min = children[8]
             var stok_min = $(tdstok_min).html()
 
@@ -515,6 +518,7 @@
                 harga_diterima: harga_diterima,
                 total_harga: total_harga,
                 id_gudang: id_gudang,
+                nama_gudang: nama_gudang,
                 stok_min: stok_min
             }
             
