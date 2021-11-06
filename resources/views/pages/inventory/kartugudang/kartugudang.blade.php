@@ -195,7 +195,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Mutasi Sparepart</h5>
+                <h6 class="modal-title" id="exampleModalCenterTitle">Mutasi Penempatan Sparepart</h6>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -203,7 +203,6 @@
                 class="d-inline">
                 @csrf
                 <div class="modal-body">
-                    <h6>Mutasi Penempatan Sparepart</h6>
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
@@ -216,20 +215,19 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group">
                         <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
                         <select class="form-control" name="id_rak" id="id_rak" class="form-control">
                             <option value="" holder>Pilih Rak</option>
                         </select>
-                        <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih jenis
-                            sparepart terlebih
+                        <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih gudang terlebih
                             dahulu)</span>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-success" type="submit">Mutasi</button>
+                    <button class="btn btn-success" type="submit">Mutasi!</button>
                 </div>
             </form>
         </div>
