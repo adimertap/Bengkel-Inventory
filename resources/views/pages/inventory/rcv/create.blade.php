@@ -565,7 +565,7 @@
         var keterangan = form.find('textarea[name="keterangan"]').val()
         var id_gudang = form.find('select[name=id_gudang]').val()
         var id_gudang2 = form.find('select[name=id_gudang]').text()
-        var nama_gudang = $(`#id_gudang-${id_sparepart} :selected`).text();
+        var nama_gudang = $(`#id_gudang-${id_sparepart} :selected`).text().trim();
         
 
         console.log(id_gudang, nama_gudang)
