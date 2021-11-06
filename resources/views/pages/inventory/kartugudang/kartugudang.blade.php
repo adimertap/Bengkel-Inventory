@@ -148,7 +148,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ route('Kartu-gudang.show', $item->id_detail_sparepart) }}"
-                                                    class="btn btn-dark btn-datatable" data-toggle="tooltip"
+                                                    class="btn btn-info btn-datatable" data-toggle="tooltip"
                                                     data-placement="top" title=""
                                                     data-original-title="Sparepart Report">
                                                     <i class="fas fa-box"></i>
@@ -167,7 +167,7 @@
                                                     data-original-title="Detail Sparepart dan Foto">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                <a href="" class="btn btn-warning" type="button"
                                                     data-toggle="modal" data-target="#Modalmutasi-{{ $item->id_detail_sparepart }}">
                                                     Mutasi
                                                 </a>
