@@ -199,15 +199,15 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('Detailsparepart.update', $item->id_detail_sparepart) }}" method="POST"
-                class="d-inline">
+            <form action="{{ route('Detailsparepart.update', $item->id_detail_sparepart) }}" method="POST" class="d-inline">
+                @method('PUT')
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
                         <select class="form-control" name="id_gudang" id="id_gudang" class="form-control" required>
-                            <option value="" holder>Pilih Jenis</option>
+                            <option value="" holder>Pilih Gudang</option>
                             @foreach ($gudang as $items)
                             <option value="{{ $items->id_gudang }}">
                                 {{ $items->nama_gudang }}
