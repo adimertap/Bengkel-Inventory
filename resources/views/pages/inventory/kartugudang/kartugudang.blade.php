@@ -198,12 +198,39 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('Rcv.destroy', $item->id_detail_sparepart) }}" method="POST" class="d-inline">
+            <form action="{{ route('Detailsparepart.update', $item->id_detail_sparepart) }}" method="POST" class="d-inline">
                 @csrf
-                <div class="modal-body text-center"></div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select class="form-control" name="id_gudang" id="id_gudang">
+                            <option value="{{ $item->Gudang->id_gudang }}" holder>
+                                {{ $item->Gudang->nama_gudang }}</option>
+                            @foreach ($gudang as $gudangs)
+                            <option value="{{ $gudangs->id_gudang }}">
+                                {{ $gudangs->nama_gudang }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select class="form-control" name="id_rak" id="id_rak">
+                            <option value="{{ $item->Rak->id_rak }}" holder>
+                                {{ $item->Rak->nama_rak }}</option>
+                            @foreach ($rak as $raks)
+                            <option value="{{ $raks->id_rak }}">
+                                {{ $raks->nama_rak }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                    <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                    <button class="btn btn-success" type="submit">Mutasi</button>
                 </div>
             </form>
         </div>

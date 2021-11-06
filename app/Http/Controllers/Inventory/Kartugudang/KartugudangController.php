@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory\Kartugudang;
 
 use App\Http\Controllers\Controller;
 use App\Model\Inventory\DetailSparepart\DetailSparepart;
+use App\Model\Inventory\Gudang;
 use App\Model\Inventory\Jenissparepart;
 use App\Model\Inventory\Kartugudang\Kartugudang;
 use App\Model\Inventory\Konversi;
@@ -25,11 +26,14 @@ class KartugudangController extends Controller
         $sparepart = DetailSparepart::with([
             'Sparepart', 'Gudang'
         ])->get();
+
+        $gudang = Gudang::get();
+        $rak = Rak::get();
  
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal = Carbon::now()->format('j F Y');
 
-        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart','today','tanggal'));
+        return view('pages.inventory.kartugudang.kartugudang', compact('sparepart','today','tanggal', 'gudang', 'rak'));
     }
 
     /**

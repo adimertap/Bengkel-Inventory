@@ -82,7 +82,12 @@ class DetailSparepartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $detail = DetailSparepartDetailSparepart::find($id);
+        $detail->id_gudang = $request->id_gudang;
+        $detail->id_rak = $request->id_rak;
+        $detail->update();
+
+        return redirect()->back()->with('messageberhasil','Mutasi Berhasil Dilakukan');
     }
 
     /**
