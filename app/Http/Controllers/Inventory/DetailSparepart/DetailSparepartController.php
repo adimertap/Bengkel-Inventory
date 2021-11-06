@@ -91,9 +91,9 @@ class DetailSparepartController extends Controller
         return redirect()->back()->with('messageberhasil','Mutasi Berhasil Dilakukan');
     }
 
-    public function getrak($id)
+    public function getrak($id_gudang)
     {
-        $merk = Rak::where('id_gudang', '=', $id)->pluck('nama_rak', 'id_rak');
+        $merk = Rak::where('id_gudang', '=', $id_gudang)->pluck('nama_rak', 'id_rak');
         // return $merk;
         return json_encode($merk);
     }

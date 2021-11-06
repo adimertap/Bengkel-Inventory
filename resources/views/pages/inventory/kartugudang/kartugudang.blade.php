@@ -245,7 +245,9 @@
 {{-- Script Open Modal Callback --}}
 <script>
 
-$(document).ready(function () {
+
+
+    $(document).ready(function () {
         $('#validasierror').click();
 
         $('select[name="id_gudang"]').on('change', function () {
@@ -273,10 +275,6 @@ $(document).ready(function () {
                 $('select[name="id_rak"]').empty();
             }
         });
-    });
-
-    $(document).ready(function () {
-        $('#validasierror').click();
     });
 
     setInterval(displayclock, 500);
