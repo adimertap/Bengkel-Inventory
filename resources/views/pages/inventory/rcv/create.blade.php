@@ -564,7 +564,7 @@
         }).format(harga_diterima)
         var keterangan = form.find('textarea[name="keterangan"]').val()
         var id_gudang = form.find('select[name=id_gudang]').val()
-        var id_gudang2 = form.find('select[name=id_gudang]:selected').text()
+        var id_gudang2 = form.find('select[name=id_gudang]').text('selected')
         
 
         console.log(id_gudang, id_gudang2)
