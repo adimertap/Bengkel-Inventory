@@ -276,7 +276,7 @@
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
                                             <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
-                                            <td class="nama_gudangedit"><span id="{{ $sparepart->pivot->id_gudang }}">{{ $sparepart->pivot->gudang->nama_gudang }}</span></td>
+                                            <td class="nama_gudangedit"><span id="{{ $sparepart->pivot->id_gudang }}">{{ $sparepart->pivot->nama_gudang }}</span></td>
                                             <td class="stok_minedit">{{ $sparepart->pivot->stok_min }}</td>
                                             <td></td>
                                         </tr>
@@ -708,31 +708,6 @@
                 }
             ]
         });
-
-        // $('select[name="id_gudang"]').on('change', function () {
-        //     var id_gudang = $(this).val();
-        //     if (id_gudang) {
-        //         $.ajax({
-        //             url: '/inventory/receiving/getrak/' + id_gudang,
-        //             type: "GET",
-        //             dataType: "json",
-        //             success: function (data) {
-        //                 console.log(data)
-        //                 $('select[name="id_rak"]').empty();
-        //                 $('select[name="id_rak"]').append('<option value="" holder>Pilih Rak</option>')
-        //                 $.each(data, function (key, value) {
-        //                     $('select[name="id_rak"]').append('<option value="' + key + '">' + value + '</option>');
-        //                 });
-        //             },
-        //             error: function (response) {
-        //                 console.log(response)
-        //             }
-        //         });
-        //     } else {
-        //         $('select[name="id_rak"]').empty();
-        //     }
-        // });
-
     });
 
 </script>
