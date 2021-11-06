@@ -566,10 +566,6 @@
         var id_gudang = form.find('select[name=id_gudang]').val()
         var id_gudang2 = form.find('select[name=id_gudang]').text()
         var nama_gudang = $(`#id_gudang-${id_sparepart} :selected`).text().trim();
-        
-
-        console.log(id_gudang, nama_gudang)
-
         var stok_min = form.find('input[name=stok_min]').val()
 
         if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '' | id_gudang ==
@@ -599,8 +595,6 @@
                 var satuan = $(data.find('.satuan')[0]).text()
                 var qty = $(data.find('.qty')[0]).text()
                 var harga_beli = $(data.find('.harga_beli')[0]).text()
-
-
                 var template = $($('#template_delete_button').html())
                 var table = $('#dataTablekonfirmasi').DataTable()
                 var row = $(`#${$.escapeSelector(kode_sparepart.trim())}`).parent().parent()
@@ -608,7 +602,7 @@
 
                 $('#dataTablekonfirmasi').DataTable().row.add([
                     nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, `<span id=${id_sparepart}>${nama_sparepart}</span>`,
-                    qty, qty_rcv, harga_diterima_fix, keterangan
+                    qty, qty_rcv, harga_diterima_fix, keterangan, `<span id=${id_gudang}>${nama_gudang}</span>`, stok_min
                 ]).draw();
 
                 $(`#buttonclose-${id_sparepart}`).click()
