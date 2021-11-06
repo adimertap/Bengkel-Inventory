@@ -357,7 +357,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <select class="form-control" name="id_gudang" id="id_gudang">
+                            <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
                                 <option value="" holder>Pilih Gudang</option>
                                 @foreach ($gudang as $gudangs)
                                 <option value="{{ $gudangs->id_gudang }}">
@@ -383,7 +383,7 @@
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <select class="form-control" name="id_gudang" id="id_gudang">
+                            <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
                                 <option value="{{ $item->Detailsparepart->Gudang->id_gudang }}" holder>
                                     {{ $item->Detailsparepart->Gudang->nama_gudang }}</option>
                                 @foreach ($gudang as $gudangs)
@@ -564,10 +564,11 @@
         }).format(harga_diterima)
         var keterangan = form.find('textarea[name="keterangan"]').val()
         var id_gudang = form.find('select[name=id_gudang]').val()
-        var id_gudang2 = form.find('select[name=id_gudang]').text('selected')
+        var id_gudang2 = form.find('select[name=id_gudang]').text()
+        var nama_gudang = $(`#id_gudang-${id_sparepart} :selected`).text();
         
 
-        console.log(id_gudang, id_gudang2)
+        console.log(id_gudang, nama_gudang)
 
         var stok_min = form.find('input[name=stok_min]').val()
 
