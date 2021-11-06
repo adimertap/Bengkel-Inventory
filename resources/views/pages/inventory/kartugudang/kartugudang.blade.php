@@ -254,7 +254,7 @@
             var id_gudang = $(this).val();
             if (id_gudang) {
                 $.ajax({
-                    url: 'kartu-gudang/getrak/' + id_gudang,
+                    url: 'getrak/' + id_gudang,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

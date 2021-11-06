@@ -224,7 +224,7 @@ Route::group(
 
 
         // KARTU GUDANG --------------------------------------------------------------------------- Kartu Gudang
-        Route::prefix('inventory/Kartugudang')
+        Route::prefix('inventory')
             ->namespace('Inventory\Kartugudang')
             ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
