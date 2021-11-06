@@ -472,35 +472,53 @@
         var dataform2 = []
         var _token = form1.find('input[name="_token"]').val()
 
+        var datasparepart = $('#konfirmasi').children()
+        for (let index = 0; index < datasparepart.length; index++) {
+            var children = $(datasparepart[index]).children()
 
+            // Validasi Table Kosong
+            var validasichildren = children.children()
 
-        for (var i = 0; i < sparepart.length; i++) {
-            var form = $('#form-' + sparepart[i].id_sparepart)
-            var qty_po = $($('#item-' + sparepart[i].id_sparepart).find('.qty')[0]).html()
-            var qty_rcv = form.find('input[name="qty_rcv"]').val()
-            var keterangan = form.find('textarea[name="keterangan"]').val()
-            var harga_diterima = form.find('input[name="harga_diterima"]').val()
-            var total_harga = qty_rcv * harga_diterima
-            var id_gudang = form.find('select[name=id_gudang]').val()
-            var stok_min = form.find('input[name=stok_min]').val()
+            // ID SPAREPART
+            var td = children[2]
+            var span = $(td).children()[0]
+            var id_sparepart = $(span).attr('id')
 
-            if (qty_rcv == 0 | qty_rcv == '' | harga_diterima == 0 | harga_diterima == '') {
-                continue
-            } else {
-                var id_sparepart = sparepart[i].id_sparepart
-                var obj = {
-                    id_sparepart: id_sparepart,
-                    id_rcv: id_rcv,
-                    qty_rcv: qty_rcv,
-                    qty_po: qty_po,
-                    keterangan: keterangan,
-                    harga_diterima: harga_diterima,
-                    total_harga: total_harga,
-                    id_gudang: id_gudang,
-                    stok_min: stok_min
-                }
-                dataform2.push(obj)
+            var qty_po = children[3].html()
+
+            var tdqty_rcv = children[4]
+            var qty_rcv = $(tdqty_rcv).html()
+
+            var tdharga_diterima = children[5]
+            var harga_diterima_tes = $(tdharga_diterima).html()
+            var harga_diterima = harga_diterima_tes.replace('Rp', '').replace('&nbsp;', '')
+                .replace('.', '').replace('.', '').replace(',00', '').trim()
+
+            var tdketerangan = children[6]
+            var keterangan = $(tdketerangan).html()
+
+            var td = children[7]
+            var span = $(td).children()[0]
+            var id_gudang = $(span).attr('id')
+
+            var tdstok_min = children[8]
+            var stok_min = $(tdstok_min).html()
+
+            var obj = {
+                id_sparepart: id_sparepart,
+                id_rcv: id_rcv,
+                qty_rcv: qty_rcv,
+                qty_po: qty_po,
+                keterangan: keterangan,
+                harga_diterima: harga_diterima,
+                total_harga: total_harga,
+                id_gudang: id_gudang,
+                stok_min: stok_min
             }
+
+            dataform2.push(obj)
+
+
         }
 
         if (dataform2.length == 0) {
