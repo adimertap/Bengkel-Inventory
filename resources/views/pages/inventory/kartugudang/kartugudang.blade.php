@@ -207,7 +207,7 @@
                         <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
                         <select class="form-control" name="id_gudang" id="id_gudang" class="form-control" required>
-                            <option value="" holder>Pilih Gudang</option>
+                            <option value="{{ $item->Gudang->id_gudang }}" holder>{{ $item->Gudang->nama_gudang }}</option>
                             @foreach ($gudang as $items)
                             <option value="{{ $items->id_gudang }}">
                                 {{ $items->nama_gudang }}
@@ -219,7 +219,7 @@
                         <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
                         <select class="form-control" name="id_rak" id="id_rak" class="form-control">
-                            <option value="" holder>Pilih Rak</option>
+                            <option value="{{ $item->Rak->id_rak }}" holder>{{ $item->Rak->nama_rak }}</option>
                         </select>
                         <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih gudang terlebih
                             dahulu)</span>

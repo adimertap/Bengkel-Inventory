@@ -23,7 +23,8 @@ class DetailSparepart extends Model
         'stok_min',
         'status_jumlah',
         'harga_market',
-        'keterangan'
+        'keterangan',
+        'id_rak'
     ];
 
     protected $hidden =[ 
@@ -40,6 +41,11 @@ class DetailSparepart extends Model
     public function Gudang()
     {
         return $this->belongsTo(Gudang::class, 'id_gudang', 'id_gudang');
+    }
+
+    public function Rak()
+    {
+        return $this->belongsTo(Rak::class, 'id_rak', 'id_rak');
     }
 
     public function Kartugudang()
