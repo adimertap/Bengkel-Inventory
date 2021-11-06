@@ -231,7 +231,7 @@ Route::group(
 
                 Route::resource('Kartu-gudang', 'KartugudangController');
                 Route::get('cetak-kartu-gudang/{id}', 'KartugudangController@CetakKartu')->name('cetak-kartu-gudang');
-                Route::get('Kartu-gudang/getrak/{id_gudang}', 'KartugudangController@getrak');
+                Route::get('getrak/{id_gudang}', 'KartugudangController@getrak');
             });
     }
 );
