@@ -128,7 +128,7 @@
                         <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
                                 <a class="nav-link" href="{{ route('sparepart.index')}}">
-                                    Sparepart & Pengajuan
+                                    Global
                                 </a>
                                 <a class="nav-link" href="{{ route('supplier.index')}}">
                                     Supplier
