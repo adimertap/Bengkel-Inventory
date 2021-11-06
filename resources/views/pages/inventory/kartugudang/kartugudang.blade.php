@@ -167,7 +167,7 @@
                                                     data-original-title="Detail Sparepart dan Foto">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="" class="btn btn-warning btn-xs" type="button"
+                                                <a href="" class="btn btn-light btn-xs" type="button"
                                                     data-toggle="modal" data-target="#Modalmutasi-{{ $item->id_detail_sparepart }}">
                                                     Mutasi
                                                 </a>
@@ -193,14 +193,13 @@
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-danger-soft">
+            <div class="modal-header bg-light">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Mutasi Sparepart</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
             <form action="{{ route('Rcv.destroy', $item->id_detail_sparepart) }}" method="POST" class="d-inline">
                 @csrf
-                @method('delete')
                 <div class="modal-body text-center"></div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
