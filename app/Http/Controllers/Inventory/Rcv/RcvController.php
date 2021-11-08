@@ -163,7 +163,7 @@ class RcvController extends Controller
         
         
 
-        return view('pages.inventory.rcv.edit', compact('rcv','kode_rcv','rak','gudang'));
+        return view('pages.inventory.rcv.edit', compact('rcv','rak','gudang'));
     }
 
     /**
