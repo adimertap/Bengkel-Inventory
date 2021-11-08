@@ -99,7 +99,6 @@ class MasterdatasparepartController extends Controller
             $sparepart->nama_sparepart = $request->nama_sparepart;
             $sparepart->id_kemasan = $request->id_kemasan;
             $sparepart->dimensi_berat = $request->dimensi_berat;
-            $sparepart->slug = Str::slug($request->nama_sparepart);
             $sparepart->lifetime = $request->lifetime;
             $sparepart->jenis_barang = $request->jenis_barang;
             $sparepart->status_sparepart = 'Diajukan';
@@ -114,7 +113,6 @@ class MasterdatasparepartController extends Controller
             $sparepart->nama_sparepart = $request->nama_sparepart;
             $sparepart->id_kemasan = $request->id_kemasan;
             $sparepart->dimensi_berat = $request->dimensi_berat;
-            $sparepart->slug = Str::slug($request->nama_sparepart);
             $sparepart->lifetime = $request->lifetime;
             $sparepart->jenis_barang = $request->jenis_barang;
             $sparepart->status_sparepart = 'Diajukan';

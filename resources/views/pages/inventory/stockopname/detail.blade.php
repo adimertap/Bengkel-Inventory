@@ -124,8 +124,7 @@
                                         <tbody>
                                             @forelse ($opname->Detailsparepart as $detail)
                                             <tr role="row" class="odd">
-                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}
-                                                </th>
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                                 <td>{{ $detail->Sparepart->nama_sparepart }}</td>
                                                 <td>{{ $detail->pivot->jumlah_real + $detail->pivot->selisih }}</td>
                                                 <td>{{ $detail->pivot->jumlah_real }}</td>
