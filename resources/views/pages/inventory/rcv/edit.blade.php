@@ -313,7 +313,7 @@
                         </div>
                         <div class="col">
                             <label class="small text-muted line-height-normal">
-                                Qty Pesanan: {{ $item->pivot->qty_po_sementara }}
+                                Qty Pesanan: {{ $item->pivot->qty }}
                         </div>
                     </div>
                     <hr>

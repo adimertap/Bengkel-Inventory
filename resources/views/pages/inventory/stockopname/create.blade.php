@@ -161,7 +161,7 @@
                                             <td><input class="form-control form-control-sm"
                                                     id="stock-real-{{ $item->id_detail_sparepart }}"
                                                     onchange="calculateSelisih({{ $item->id_detail_sparepart }}, {{ $item->qty_stok }})"
-                                                    type="number" placeholder="Input Stock Real" />
+                                                    type="number" placeholder="Input Stock Real" min="1"/>
                                             </td>
                                             <td><input class="form-control form-control-sm"
                                                     id="selisih-{{ $item->id_detail_sparepart }}" type="text"
@@ -426,13 +426,19 @@
         var keterangan_detail = $(`#keterangan-${id_detail_sparepart}`).val()
         var selisih = $(`#selisih-${id_detail_sparepart}`).val()
 
-        if (jumlah_real == 0 | jumlah_real == '') {
+        if (jumlah_real == 0 | jumlah_real == '' | jumlah_real < 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Terdapat Field Data Kosong!',
             })
-        } else {
+        }else if(selisih == 0 | selisih < 0 ){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Data Qty Tidak Terdapat Selisih!',
+            })
+        }  else {
             var data = $('#item-' + id_detail_sparepart)
             var kode_sparepart = $(data.find('.kode_sparepart')[0]).text()
             var nama_sparepart = $(data.find('.nama_sparepart')[0]).text()
