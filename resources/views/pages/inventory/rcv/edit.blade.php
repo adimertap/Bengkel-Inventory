@@ -152,9 +152,8 @@
                                                         {{ $loop->iteration}}</th>
                                                     <td class="kode_sparepart">{{ $item->kode_sparepart }}</td>
                                                     <td class="nama_sparepart">{{ $item->nama_sparepart }}</td>
-                                                    <td class="merk_sparepart">
-                                                        {{ $item->Merksparepart->merk_sparepart }}</td>
-                                                    <td class="text-center qty">{{ $item->pivot->qty_po_sementara }}
+                                                    <td class="merk_sparepart">{{ $item->Merksparepart->merk_sparepart }}</td>
+                                                    <td class="text-center qty">{{ $item->pivot->qty_po }}
                                                     </td>
                                                     <td class="satuan">{{ $item->Kemasan->nama_kemasan }}</td>
                                                     <td>@if ($item->pivot->harga_satuan == '')
