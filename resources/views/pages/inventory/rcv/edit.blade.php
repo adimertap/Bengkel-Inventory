@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="small mb-1" for="kode_rcv">Kode Receiving</label>
                                 <input class="form-control" id="kode_rcv" type="text" name="kode_rcv"
-                                    placeholder="Input Kode Receiving" value="{{ $kode_rcv }}" readonly>
+                                    placeholder="Input Kode Receiving" value="{{ $rcv->kode_rcv }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label class="small mb-1" for="id_pegawai">Pegawai</label>
