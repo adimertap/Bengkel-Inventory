@@ -219,7 +219,7 @@
                         <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
                         <select class="form-control" name="id_rak" id="id_rak" class="form-control">
-                            <option value="{{ $item->Rak->id_rak }}" holder>{{ $item->Rak->nama_rak }}</option>
+                            <option value="{{ $item->Rak->id_rak ?? '' }}" holder>{{ $item->Rak->nama_rak ?? '' }}</option>
                         </select>
                         <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih gudang terlebih
                             dahulu)</span>
