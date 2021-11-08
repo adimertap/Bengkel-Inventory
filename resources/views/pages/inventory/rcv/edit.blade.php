@@ -147,7 +147,6 @@
                                             </thead>
                                             <tbody>
                                                 @forelse ($rcv->PO->Detailsparepart as $item)
-                                                @if ($item->pivot->qty_po_sementara > '0')
                                                 <tr id="item-{{ $item->id_sparepart }}" role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
@@ -177,9 +176,6 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                @else
-
-                                                @endif
 
                                                 @empty
 

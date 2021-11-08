@@ -136,6 +136,36 @@ class RcvController extends Controller
         return view('pages.inventory.rcv.create', compact('rcv','kode_rcv','rak','gudang'));
     }
 
+    public function edit2($id)
+    {
+        $rcv = Rcv::with([
+            'PO','Pegawai','Supplier','PO.Detailsparepart.Merksparepart.Jenissparepart',
+            'PO.Detailsparepart.Konversi','PO.Detailsparepart',
+            'PO.Detailsparepart.Detailsparepart','Detailrcv'
+        ])->find($id);
+
+        $gudang = Gudang::get();
+        $rak = Rak::get();
+
+        for($i = 0;  $i < count($rcv->Detailrcv); $i++ ){
+            for($j = 0;  $j < count($rcv->PO->Detailsparepart); $j++ ){
+               if ($rcv->Detailrcv[$i]->id_sparepart == $rcv->PO->Detailsparepart[$j]->id_sparepart ){
+                $rcv->PO->Detailsparepart[$j]->qty_rcv = $rcv->Detailrcv[$i]->pivot->qty_rcv;
+                $rcv->PO->Detailsparepart[$j]->harga_diterima = $rcv->Detailrcv[$i]->pivot->harga_diterima;
+                $rcv->PO->Detailsparepart[$j]->keterangan = $rcv->Detailrcv[$i]->pivot->keterangan;
+                $rcv->PO->Detailsparepart[$j]->id_gudang = $rcv->Detailrcv[$i]->pivot->id_gudang;
+                $rcv->PO->Detailsparepart[$j]->nama_gudang = $rcv->Detailrcv[$i]->pivot->nama_gudang;
+                $rcv->PO->Detailsparepart[$j]->id_rak = $rcv->Detailrcv[$i]->pivot->id_rak;
+               };
+            }
+        }
+
+        
+        
+
+        return view('pages.inventory.rcv.edit', compact('rcv','kode_rcv','rak','gudang'));
+    }
+
     /**
      * Update the specified resource in storage.
      *

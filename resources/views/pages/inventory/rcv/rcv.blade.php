@@ -137,7 +137,7 @@
                                                 data-placement="top" title="" data-original-title="Detail">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('Rcv.edit', $item->id_rcv) }}"
+                                            <a href="{{ route('rcvgetedit', $item->id_rcv) }}"
                                                 class="btn btn-primary btn-datatable" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fas fa-edit"></i>

@@ -186,6 +186,7 @@ Route::group(
                     ->name('Rcv-detail-po');
                 Route::get('cetak-rcv/{id}', 'RcvController@CetakRcv')->name('cetak-rcv');
                 Route::get('receiving/getrak/{id}', 'RcvController@getrak');
+                Route::get('receiving/{id}/edit', 'RcvController@edit2')->name('rcvgetedit');
             });
 
         // RETUR ---------------------------------------------------------------------- Retur
