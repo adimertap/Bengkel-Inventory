@@ -46,7 +46,7 @@
                     <div class="tab-pane py-2 py-xl-2 fade show active" id="wizard1" role="tabpanel"
                         aria-labelledby="wizard1-tab">
                         <div class="row justify-content-center">
-                            <div class="col-xxl-6 col-xl-9">
+                            <div class="col-xxl-8 col-xl-9">
                                 <h3 class="text-primary">Supplier</h3>
                                 <h5 class="card-title">Input Formulir Supplier</h5>
                                 <form action="{{ route('supplier.store') }}" method="POST">
