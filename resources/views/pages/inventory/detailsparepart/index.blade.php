@@ -22,7 +22,7 @@
                             Bengkel
                             <span class="font-weight-500">{{ Auth::user()->bengkel->nama_bengkel}}</span>
                             <hr>
-                            </hr>
+                            
                         </div>
                     </div>
                 </div>

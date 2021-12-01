@@ -28,7 +28,7 @@
         <div class="card h-100">
             <div class="card-body h-100 d-flex flex-column justify-content-center py-5 py-xl-4">
                 <div class="row align-items-center">
-                    <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
+                    <div class="col-xl-12 col-xxl-12 text-center"><img class="img-fluid"
                             src="/backend/src/assets/img/freepik/data-report-pana.svg" style="max-width: 17rem;"></div>
                     <div class="col-xl-8 col-xxl-12">
                         <h2 class="text-primary mb-3" style="font-size: 15pt">{{ $item->Sparepart->nama_sparepart }}
