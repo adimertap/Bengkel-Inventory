@@ -56,7 +56,6 @@ Route::group(
                 Route::get('sparepart/getmerk/{id}', 'MasterdatasparepartController@getmerk');
             });
 
-            
         Route::prefix('inventory/gallerysparepart')
             ->namespace('Inventory\Masterdata')
             ->middleware(['admin_gudang', 'verified'])
@@ -177,7 +176,18 @@ Route::group(
             });
 
         // RECEIVING ------------------------------------------------------------------- Receiving
-      
+        Route::prefix('inventory')
+            ->namespace('Inventory\Rcv')
+            ->middleware(['admin_gudang', 'verified'])
+            ->group(function () {
+
+                Route::resource('receiving', 'RcvController', ['names' => 'Rcv']);
+                Route::get('detail/{id_po}', 'RcvController@detailpo')
+                    ->name('Rcv-detail-po');
+                Route::get('cetak-rcv/{id}', 'RcvController@CetakRcv')->name('cetak-rcv');
+                Route::get('receiving/getrak/{id}', 'RcvController@getrak');
+                Route::get('receiving/{id}/editrcv', 'RcvController@edit2')->name('rcvgetedit');
+            });
 
         // RETUR ---------------------------------------------------------------------- Retur
         Route::prefix('inventory')
