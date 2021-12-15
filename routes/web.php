@@ -185,9 +185,12 @@ Route::group(
                 Route::get('detail/{id_po}', 'RcvController@detailpo')
                     ->name('Rcv-detail-po');
                 Route::get('cetak-rcv/{id}', 'RcvController@CetakRcv')->name('cetak-rcv');
-                Route::get('receiving/{id_rcv}/getrak/{id_gudang}', 'RcvController@getrak', function ($id_gudang){
-                    return $id_gudang;
-                });
+                // Route::get('receiving/{id_rcv}/getrak/{id_gudang}', 'RcvController@getrak', function ($id_rcv, $id_gudang){
+                //     return $id_gudang;
+                // });
+                Route::get('receiving/{id_rcv}/getrak/{id_gudang}', [
+                    'as' => 'getrak', 'uses' => 'RcvController@getrak']);
+                    
                 Route::get('receiving/{id}/editrcv', 'RcvController@edit2')->name('rcvgetedit');
             });
 
@@ -196,7 +199,6 @@ Route::group(
             ->namespace('Inventory\Retur')
             ->middleware(['admin_gudang', 'verified'])
             ->group(function () {
-
                 Route::resource('retur', 'ReturController');
                 Route::get('cetak-retur/{id}', 'ReturController@CetakRetur')->name('cetak-retur');
             });
