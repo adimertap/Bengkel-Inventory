@@ -419,6 +419,8 @@
                                     style="color: red">*</span>
                                 <select class="form-control" name="id_rak" id="id_rak"
                                     class="form-control @error('id_rak') is-invalid @enderror">
+                                    <option value="{{ $item->Detailsparepart->Rak->id_rak }}">
+                                        {{ $item->Detailsparepart->Rak->nama_rak }}</option>
                                     <option value="" holder>Pilih Rak</option>
                                 </select>
                                 <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih gudang
@@ -732,6 +734,7 @@
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
+                        console.log(data)
                     },
                     error: function (response) {
                         console.log(response)
