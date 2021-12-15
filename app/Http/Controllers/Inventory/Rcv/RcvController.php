@@ -333,7 +333,6 @@ class RcvController extends Controller
 
     public function getrak($id_gudang)
     {
-        return $id_gudang;
         $rak = Rak::where('id_gudang', '=', $id_gudang)->pluck('nama_rak', 'id_rak');
         return json_encode($rak);
     }
