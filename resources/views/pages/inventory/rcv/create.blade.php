@@ -417,15 +417,15 @@
                             <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                                     style="color: red">*</span>
-                                <select class="form-control" name="id_rak" id="id_rak-{{ $item->id_sparepart }}">
-                                    <option value="{{ $item->Detailsparepart->Rak->id_rak }}" holder>
-                                        {{ $item->Detailsparepart->Rak->nama_rak }}</option>
-                                    @foreach ($rak as $raks)
-                                    <option value="{{ $raks->id_rak }}">
-                                        {{ $raks->nama_rak }}
-                                    </option>
-                                    @endforeach
+                                <select class="form-control" name="id_rak" id="id_rak"
+                                    class="form-control @error('id_rak') is-invalid @enderror">
+                                    <option value="" holder>Pilih Rak</option>
                                 </select>
+                                <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih gudang
+                                    terlebih
+                                    dahulu)</span>
+                                @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="stok_min">Stok Minimum</label><span class="mr-4 mb-3"
