@@ -412,7 +412,7 @@
                                 style="color: red">*</span>
                             <select class="form-control" name="id_rak" id="id_rak-{{ $item->id_sparepart }}">
                                 <option value="{{ $item->Detailsparepart->Rak->id_rak }}" holder>
-                                    {{ $item->Detailsparepart->Rak->nama_gudang }}</option>
+                                    {{ $item->Detailsparepart->Rak->nama_rak }}</option>
                                 @foreach ($rak as $raks)
                                 <option value="{{ $raks->id_rak }}">
                                     {{ $raks->nama_rak }}
