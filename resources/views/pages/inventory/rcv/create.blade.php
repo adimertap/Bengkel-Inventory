@@ -720,6 +720,7 @@
         $('#validasierror').click();
         $('select[name="id_gudang"]').on('change', function () {
             var id_gudang = $(this).val();
+            console.log(id_gudang)
             if (id_gudang) {
                 $.ajax({
                     url: 'getrak/' + id_gudang,
