@@ -351,8 +351,8 @@
                     <div class="small mb-2">
                         <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-5">
+                  
+                        <div class="form-group">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
@@ -364,26 +364,27 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-md-5">
-                            <label class="small mb-1 mr-1" for="merk">Pilih Rak</label><span
-                                class="mr-4 mb-3" style="color: red">*</span>
-                            <select class="form-control" name="id_rak" id="id_rak"
-                                class="form-control @error('id_rak') is-invalid @enderror">
-                                <option value="" holder>Pilih Rak</option>
-                            </select>
-                            <span class="small" style="font-size: 13px"
-                                style="color: rgb(117, 114, 114)">(Pilih gudang terlebih
-                                dahulu)</span>
-                            @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                        
-                        <div class="form-group col-md-2">
-                            <label class="small mb-1 mr-1" for="stok_min">Min</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
-                            <input class="form-control" name="stok_min" type="number" id="stok_min" min="1"
-                                placeholder="Input Stok Minimum" value="{{ old('stok_min') }}"></input>
-                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="merk">Pilih Rak</label><span
+                                    class="mr-4 mb-3" style="color: red">*</span>
+                                <select class="form-control" name="id_rak" id="id_rak"
+                                    class="form-control @error('id_rak') is-invalid @enderror">
+                                    <option value="" holder>Pilih Rak</option>
+                                </select>
+                                <span class="small" style="font-size: 13px"
+                                    style="color: rgb(117, 114, 114)">(Pilih gudang terlebih
+                                    dahulu)</span>
+                                @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
+                                </div> @enderror
+                            </div>
+                            
+                            <div class="form-group col-md-6">
+                                <label class="small mb-1 mr-1" for="stok_min">Min</label><span class="mr-4 mb-3"
+                                    style="color: red">*</span>
+                                <input class="form-control" name="stok_min" type="number" id="stok_min" min="1"
+                                    placeholder="Input Stok Minimum" value="{{ old('stok_min') }}"></input>
+                            </div>
                     </div>
 
                     @else
