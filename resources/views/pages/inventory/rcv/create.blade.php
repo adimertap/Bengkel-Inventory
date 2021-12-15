@@ -305,7 +305,7 @@
             </div>
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
-                    <h6>Detail Pesanan</h6>
+                    <h6>Detail Pesanan SOS</h6>
 
 
                     <div class="row">
