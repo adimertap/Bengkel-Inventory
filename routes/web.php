@@ -26,7 +26,7 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get("/getkabupaten/{id}", "Auth\RegisterController@kabupaten_baru");
 Route::get("/getkecamatan/{id}", "Auth\RegisterController@kecamatan_baru");
 Route::get("/getdesa/{id}", "Auth\RegisterController@desa_baru");
-
+Route::get('/getrak/{id}', 'RcvController@getrak');
 
 Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
 Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
@@ -185,7 +185,7 @@ Route::group(
                 Route::get('detail/{id_po}', 'RcvController@detailpo')
                     ->name('Rcv-detail-po');
                 Route::get('cetak-rcv/{id}', 'RcvController@CetakRcv')->name('cetak-rcv');
-                Route::get('getrak/{id}', 'RcvController@getrak');
+               
                 Route::get('receiving/{id}/editrcv', 'RcvController@edit2')->name('rcvgetedit');
             });
 
