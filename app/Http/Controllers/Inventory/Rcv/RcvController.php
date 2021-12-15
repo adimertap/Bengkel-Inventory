@@ -331,7 +331,7 @@ class RcvController extends Controller
         return view('print.Inventory.cetakrcv', compact('rcv','now'));
     }
 
-    public function getrak($id_rcv, $id_gudang)
+    public function getrak($id_gudang)
     {
         $rak = Rak::where('id_gudang', '=', $id_gudang)->pluck('nama_rak', 'id_rak');
         return json_encode($rak);

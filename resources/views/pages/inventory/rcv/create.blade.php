@@ -720,11 +720,10 @@
         $('#validasierror').click();
         $('select[name="id_gudang"]').on('change', function () {
             var id_gudang = $(this).val();
-            var id_rcv = $('#id_rcv_tes').html();
-
+            
             if (id_gudang) {
                 $.ajax({
-                    url: 'receiving/'+ id_rcv + '/getrak/' + id_gudang,
+                    url: 'getrak/' + id_gudang,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
