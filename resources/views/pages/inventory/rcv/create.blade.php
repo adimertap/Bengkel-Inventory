@@ -267,13 +267,20 @@
                                         @forelse ($rcv->Detailrcv as $sparepart )
                                         <tr id="gas-{{ $sparepart->id_sparepart }}" role="row" class="odd">
                                             <td></td>
-                                            <td class="kode_sparepartedit"><span id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span></td>
-                                            <td class="nama_sparepartedit"><span id="{{ $sparepart->id_sparepart }}">{{ $sparepart->nama_sparepart }}</span></td>
+                                            <td class="kode_sparepartedit"><span
+                                                    id="{{ $sparepart->kode_sparepart }}">{{ $sparepart->kode_sparepart }}</span>
+                                            </td>
+                                            <td class="nama_sparepartedit"><span
+                                                    id="{{ $sparepart->id_sparepart }}">{{ $sparepart->nama_sparepart }}</span>
+                                            </td>
                                             <td class="qtypoedit">{{ $sparepart->pivot->qty_po }}</td>
                                             <td class="qtyrcvedit">{{ $sparepart->pivot->qty_rcv }}</td>
-                                            <td class="total_hargaedit">Rp {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
+                                            <td class="total_hargaedit">Rp
+                                                {{ number_format($sparepart->pivot->harga_diterima,2,',','.')}}</td>
                                             <td class="keterangan_edit">{{ $sparepart->pivot->keterangan }}</td>
-                                            <td class="nama_gudangedit"><span id="{{ $sparepart->pivot->id_gudang }}">{{ $sparepart->pivot->nama_gudang }}</span></td>
+                                            <td class="nama_gudangedit"><span
+                                                    id="{{ $sparepart->pivot->id_gudang }}">{{ $sparepart->pivot->nama_gudang }}</span>
+                                            </td>
                                             <td class="stok_minedit">{{ $sparepart->pivot->stok_min }}</td>
                                             <td></td>
                                         </tr>
@@ -300,8 +307,8 @@
         <div class="modal-content">
             <div class="modal-header bg-light">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Form Receiving</h5>
-                <button class="close" type="button" data-dismiss="modal" id="buttonclose-{{ $item->id_sparepart }}" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" id="buttonclose-{{ $item->id_sparepart }}"
+                    aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
@@ -351,40 +358,40 @@
                     <div class="small mb-2">
                         <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                     </div>
-                  
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
+
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
+                            <option value="" holder>Pilih Gudang</option>
+                            @foreach ($gudang as $gudangs)
+                            <option value="{{ $gudangs->id_gudang }}">
+                                {{ $gudangs->nama_gudang }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
-                            <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
-                                <option value="" holder>Pilih Gudang</option>
-                                @foreach ($gudang as $gudangs)
-                                <option value="{{ $gudangs->id_gudang }}">
-                                    {{ $gudangs->nama_gudang }}
-                                </option>
-                                @endforeach
+                            <select class="form-control" name="id_rak" id="id_rak"
+                                class="form-control @error('id_rak') is-invalid @enderror">
+                                <option value="" holder>Pilih Rak</option>
                             </select>
+                            <span class="small" style="font-size: 13px" style="color: rgb(117, 114, 114)">(Pilih gudang
+                                terlebih
+                                dahulu)</span>
+                            @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1 mr-1" for="merk">Pilih Rak</label><span
-                                    class="mr-4 mb-3" style="color: red">*</span>
-                                <select class="form-control" name="id_rak" id="id_rak"
-                                    class="form-control @error('id_rak') is-invalid @enderror">
-                                    <option value="" holder>Pilih Rak</option>
-                                </select>
-                                <span class="small" style="font-size: 13px"
-                                    style="color: rgb(117, 114, 114)">(Pilih gudang terlebih
-                                    dahulu)</span>
-                                @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            
-                            <div class="form-group col-md-6">
-                                <label class="small mb-1 mr-1" for="stok_min">Min</label><span class="mr-4 mb-3"
-                                    style="color: red">*</span>
-                                <input class="form-control" name="stok_min" type="number" id="stok_min" min="1"
-                                    placeholder="Input Stok Minimum" value="{{ old('stok_min') }}"></input>
-                            </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="stok_min">Min</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <input class="form-control" name="stok_min" type="number" id="stok_min" min="1"
+                                placeholder="Input Stok Minimum" value="{{ old('stok_min') }}"></input>
+                        </div>
                     </div>
 
                     @else
@@ -392,20 +399,20 @@
                     <div class="small mb-2">
                         <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                     </div>
-                    
-                        <div class="form-group">
-                            <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
-                                style="color: red">*</span>
-                            <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
-                                <option value="{{ $item->Detailsparepart->Gudang->id_gudang }}" holder>
-                                    {{ $item->Detailsparepart->Gudang->nama_gudang }}</option>
-                                @foreach ($gudang as $gudangs)
-                                <option value="{{ $gudangs->id_gudang }}">
-                                    {{ $gudangs->nama_gudang }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
+
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
+                            <option value="{{ $item->Detailsparepart->Gudang->id_gudang }}" holder>
+                                {{ $item->Detailsparepart->Gudang->nama_gudang }}</option>
+                            @foreach ($gudang as $gudangs)
+                            <option value="{{ $gudangs->id_gudang }}">
+                                {{ $gudangs->nama_gudang }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
@@ -650,8 +657,10 @@
                 table.row(row).remove().draw();
 
                 $('#dataTablekonfirmasi').DataTable().row.add([
-                    nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`, `<span id=${id_sparepart}>${nama_sparepart}</span>`,
-                    qty, qty_rcv, harga_diterima_fix, keterangan, `<span id=${id_gudang}>${nama_gudang}</span>`, stok_min
+                    nama_sparepart, `<span id=${kode_sparepart}>${kode_sparepart}</span>`,
+                    `<span id=${id_sparepart}>${nama_sparepart}</span>`,
+                    qty, qty_rcv, harga_diterima_fix, keterangan, `<span id=${id_gudang}>${nama_gudang}</span>`,
+                    stok_min
                 ]).draw();
 
                 $(`#buttonclose-${id_sparepart}`).click()
@@ -694,7 +703,7 @@
                 var table = $('#dataTable').DataTable()
             }
         })
-    
+
     }
 
     function editsparepart(element) {
@@ -706,6 +715,33 @@
     }
 
     $(document).ready(function () {
+        $('#validasierror').click();
+        $('select[name="id_gudang"]').on('change', function () {
+            var id_gudang = $(this).val();
+            if (id_gudang) {
+                $.ajax({
+                    url: 'getrak/' + id_gudang,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_rak"]').empty();
+                        $('select[name="id_rak"]').append(
+                            '<option value="" holder>Pilih Rak</option>')
+                        $.each(data, function (key, value) {
+                            $('select[name="id_rak"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
+            } else {
+                $('select[name="id_rak"]').empty();
+            }
+        });
+
         $('.harga_diterima').each(function () {
             $(this).on('input', function () {
                 var harga = $(this).val()
