@@ -358,8 +358,8 @@
                         <div class="small mb-2">
                             <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                         </div>
-
-                        <div class="form-group">
+                        <div class="row">
+                        <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
@@ -371,8 +371,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
+                       
+                            {{-- <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                                     style="color: red">*</span>
                                 <select class="form-control" name="id_rak" id="id_rak"
@@ -384,7 +384,7 @@
                                     dahulu)</span>
                                 @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="stok_min">Min</label><span class="mr-4 mb-3"
@@ -399,8 +399,8 @@
                         <div class="small mb-2">
                             <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                         </div>
-
-                        <div class="form-group">
+                        <div class="row">
+                        <div class="form-group col-md-6">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
@@ -413,8 +413,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
+                       
+                            {{-- <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
                                     style="color: red">*</span>
                                 <select class="form-control" name="id_rak" id="id_rak"
@@ -428,7 +428,7 @@
                                     dahulu)</span>
                                 @error('id_rak')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
-                            </div>
+                            </div> --}}
                             <div class="form-group col-md-6">
                                 <label class="small mb-1 mr-1" for="stok_min">Stok Minimum</label><span class="mr-4 mb-3"
                                     style="color: red">*</span>
@@ -718,33 +718,33 @@
 
     $(document).ready(function () {
         $('#validasierror').click();
-        $('select[name="id_gudang"]').on('change', function () {
-            var id_gudang = $(this).val();
+        // $('select[name="id_gudang"]').on('change', function () {
+        //     var id_gudang = $(this).val();
             
-            if (id_gudang) {
-                $.ajax({
-                    url: 'getrak/' + id_gudang,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="id_rak"]').empty();
-                        $('select[name="id_rak"]').append(
-                            '<option value="" holder>Pilih Rak</option>')
-                        $.each(data, function (key, value) {
-                            $('select[name="id_rak"]').append(
-                                '<option value="' +
-                                key + '">' + value + '</option>');
-                        });
-                        console.log(data)
-                    },
-                    error: function (response) {
-                        console.log(response)
-                    }
-                });
-            } else {
-                $('select[name="id_rak"]').empty();
-            }
-        });
+        //     if (id_gudang) {
+        //         $.ajax({
+        //             url: 'getrak/' + id_gudang,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function (data) {
+        //                 $('select[name="id_rak"]').empty();
+        //                 $('select[name="id_rak"]').append(
+        //                     '<option value="" holder>Pilih Rak</option>')
+        //                 $.each(data, function (key, value) {
+        //                     $('select[name="id_rak"]').append(
+        //                         '<option value="' +
+        //                         key + '">' + value + '</option>');
+        //                 });
+        //                 console.log(data)
+        //             },
+        //             error: function (response) {
+        //                 console.log(response)
+        //             }
+        //         });
+        //     } else {
+        //         $('select[name="id_rak"]').empty();
+        //     }
+        // });
 
         $('.harga_diterima').each(function () {
             $(this).on('input', function () {

@@ -188,8 +188,8 @@ Route::group(
                 // Route::get('receiving/{id_rcv}/getrak/{id_gudang}', 'RcvController@getrak', function ($id_rcv, $id_gudang){
                 //     return $id_gudang;
                 // });
-                Route::get('receiving/{id_rcv}/getrak/{id_gudang}', [
-                    'as' => 'getrak', 'uses' => 'RcvController@getrak']);
+                // Route::get('receiving/{id_rcv}/getrak/{id_gudang}', [
+                //     'as' => 'getrak', 'uses' => 'RcvController@getrak']);
                     
                 Route::get('receiving/{id}/editrcv', 'RcvController@edit2')->name('rcvgetedit');
             });
