@@ -26,7 +26,7 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get("/getkabupaten/{id}", "Auth\RegisterController@kabupaten_baru");
 Route::get("/getkecamatan/{id}", "Auth\RegisterController@kecamatan_baru");
 Route::get("/getdesa/{id}", "Auth\RegisterController@desa_baru");
-Route::get('/getrak/{id}', 'Inventory\Rcv\RcvController@getrak');
+Route::get('getrak/{id}', 'Inventory\Rcv\RcvController@getrak');
 
 
 Route::get('account/password', 'Account\PasswordController@edit')->name('password.edit');
