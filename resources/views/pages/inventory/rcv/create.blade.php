@@ -305,7 +305,7 @@
             </div>
             <form action="" method="POST" id="form-{{ $item->id_sparepart }}" class="d-inline">
                 <div class="modal-body">
-                    <h6>Detail Pesanan SOS</h6>
+                    <h6>Detail Pesanan</h6>
 
 
                     <div class="row">
@@ -392,8 +392,8 @@
                     <div class="small mb-2">
                         <span class="font-weight-500 text-dark">Penempatan Sparepart</span>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
+                    
+                        <div class="form-group">
                             <label class="small mb-1 mr-1" for="id_gudang">Pilih Gudang</label><span class="mr-4 mb-3"
                                 style="color: red">*</span>
                             <select class="form-control" name="id_gudang" id="id_gudang-{{ $item->id_sparepart }}">
@@ -402,6 +402,20 @@
                                 @foreach ($gudang as $gudangs)
                                 <option value="{{ $gudangs->id_gudang }}">
                                     {{ $gudangs->nama_gudang }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="small mb-1 mr-1" for="id_rak">Pilih Rak</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <select class="form-control" name="id_rak" id="id_rak-{{ $item->id_sparepart }}">
+                                <option value="{{ $item->Detailsparepart->Rak->id_rak }}" holder>
+                                    {{ $item->Detailsparepart->Rak->nama_gudang }}</option>
+                                @foreach ($rak as $raks)
+                                <option value="{{ $raks->id_rak }}">
+                                    {{ $raks->nama_rak }}
                                 </option>
                                 @endforeach
                             </select>
