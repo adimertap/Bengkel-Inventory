@@ -21,6 +21,11 @@
                             <i class="fa fa-cogs" aria-hidden="true"></i>
                             Bengkel
                             <span class="font-weight-500">{{ Auth::user()->bengkel->nama_bengkel}}</span>
+                            @if (Auth::user()->pegawai->cabang != null)
+                                {{ Auth::user()->pegawai->cabang->nama_cabang }}
+                            @else
+                
+                            @endif
                             <hr>
                             </hr>
                         </div>
