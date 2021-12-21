@@ -52,7 +52,7 @@ class Pegawai extends Model
 
     public function cabang()
     {
-        return $this->belongsTo(Cabang::class, 'id_cabang', 'id_cabang')->withTrashed();
+        return $this->belongsTo(Cabang::class, 'id_cabang', 'id_cabang');
     }
 
     public function Detailtunjangan()
