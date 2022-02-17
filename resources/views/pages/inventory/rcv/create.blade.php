@@ -500,7 +500,7 @@
         var kode_rcv = form1.find('input[name="kode_rcv"]').val()
         var kode_po = form1.find('input[name="kode_po"]').val()
         var no_do = form1.find('input[name="no_do"]').val()
-        var id_supplier = $('#id_supplier').val()
+        var id_supplier = $('#id_supplier').html()
         var id_pegawai = form1.find('input[name="id_pegawai"]').val()
         var tanggal_rcv = form1.find('input[name="tanggal_rcv"]').val()
         var dataform2 = []
